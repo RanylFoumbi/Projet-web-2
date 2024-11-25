@@ -16,11 +16,14 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 import { HeaderComponent } from './components/header/header.component';
+import { SearchBarComponent } from './components/search-bar/search-bar.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HeaderComponent
+    HeaderComponent,
+    SearchBarComponent
   ],
   imports: [
     BrowserModule,
@@ -34,6 +37,7 @@ import { HeaderComponent } from './components/header/header.component';
     MatTableModule,
     MatCardModule,
     MatSnackBarModule,
+    FormsModule,
     HttpClientModule
   ],
   providers: [],
