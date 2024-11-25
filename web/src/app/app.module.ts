@@ -9,6 +9,7 @@ import { MatTableModule } from '@angular/material/table';
 import { MatCardModule } from '@angular/material/card';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import {MatExpansionModule} from '@angular/material/expansion';
 
 
 import { AppRoutingModule } from './app-routing.module';
@@ -18,12 +19,14 @@ import { HttpClientModule } from '@angular/common/http';
 import { HeaderComponent } from './components/header/header.component';
 import { SearchBarComponent } from './components/search-bar/search-bar.component';
 import { FormsModule } from '@angular/forms';
+import { TaskComponent } from './components/task/task.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
-    SearchBarComponent
+    SearchBarComponent,
+    TaskComponent
   ],
   imports: [
     BrowserModule,
@@ -38,7 +41,8 @@ import { FormsModule } from '@angular/forms';
     MatCardModule,
     MatSnackBarModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    MatExpansionModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
