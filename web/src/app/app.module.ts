@@ -9,6 +9,7 @@ import { MatTableModule } from '@angular/material/table';
 import { MatCardModule } from '@angular/material/card';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import {MatExpansionModule} from '@angular/material/expansion';
 
 
 import { AppRoutingModule } from './app-routing.module';
@@ -20,12 +21,14 @@ import { SearchBarComponent } from './components/search-bar/search-bar.component
 import { FormsModule } from '@angular/forms';
 import { FIREBASE_OPTIONS } from '@angular/fire/compat';
 import { environment } from '../environments/env.dev';
+import { TaskComponent } from './components/task/task.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
-    SearchBarComponent
+    SearchBarComponent,
+    TaskComponent
   ],
   imports: [
     BrowserModule,
@@ -40,7 +43,8 @@ import { environment } from '../environments/env.dev';
     MatCardModule,
     MatSnackBarModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    MatExpansionModule,
   ],
   providers: [
     {provide: FIREBASE_OPTIONS, useValue: environment.firebase}
