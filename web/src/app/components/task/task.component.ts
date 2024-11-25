@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Task } from 'src/app/models/task.model';
 
 @Component({
   selector: 'app-task',
@@ -6,18 +7,16 @@ import { Component } from '@angular/core';
 })
 export class TaskComponent {
 
-  tasks = [
-    { name: 'Task 1', description: 'This is the first task', completed: false },
-    { name: 'Task 2', description: 'This is the second task', completed: false },
-    { name: 'Task 3', description: 'This is the third task', completed: false }
-  ];
+  @Input() task!: Task;
+  @Output() remove = new EventEmitter<String>();
+  @Output() update = new EventEmitter<String>();
 
-  removeTask = (index: number) => {
-    this.tasks.splice(index, 1);
+  removeTask = () => {
+    this.remove.emit(this.task.id);
   }
 
-  updateTask = (index: number, task: any) => {
-    this.tasks[index] = task;
+  updateTask = () => {
+    this.update.emit(this.task.id);
   }
 
 }

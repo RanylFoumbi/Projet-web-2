@@ -22,13 +22,15 @@ import { FormsModule } from '@angular/forms';
 import { FIREBASE_OPTIONS } from '@angular/fire/compat';
 import { environment } from '../environments/env.dev';
 import { TaskComponent } from './components/task/task.component';
+import { CapitalizePipe } from './pipes/capitalize.pipe';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     SearchBarComponent,
-    TaskComponent
+    TaskComponent,
+    CapitalizePipe
   ],
   imports: [
     BrowserModule,

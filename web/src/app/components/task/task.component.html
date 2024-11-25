@@ -1,19 +1,19 @@
 <div class="flex justify-center items-center p-4">
   <mat-expansion-panel hideToggle class="max-w-3xl w-full flex flex-col gap-3 items-center">
     <mat-expansion-panel-header class="flex justify-between">
-      <mat-panel-title> Task </mat-panel-title>
+      <mat-panel-title> {{task.name | capitalize}} </mat-panel-title>
       <div class="flex items-center">
         <span class="rounded-md mr-2 bg-red-400 px-2 text-white">
-          Status
+          {{task.status.toString() | capitalize}}
         </span>
-        <button mat-icon-button>
+        <button mat-icon-button (click)="removeTask()">
           <mat-icon class="text-gray-500">edit</mat-icon>
         </button>
-        <button mat-icon-button>
+        <button mat-icon-button (click)="updateTask()">
           <mat-icon class="text-gray-500">delete</mat-icon>
         </button>
       </div>
     </mat-expansion-panel-header>
-    <p>Task description here</p>
+    <p>{{task.description}}</p>
   </mat-expansion-panel>
 </div>
