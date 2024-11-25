@@ -23,6 +23,7 @@ import { FIREBASE_OPTIONS } from '@angular/fire/compat';
 import { environment } from '../environments/env.dev';
 import { TaskComponent } from './components/task/task.component';
 import { CapitalizePipe } from './pipes/capitalize.pipe';
+import { HomeComponent } from './pages/home/home.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { CapitalizePipe } from './pipes/capitalize.pipe';
     HeaderComponent,
     SearchBarComponent,
     TaskComponent,
-    CapitalizePipe
+    CapitalizePipe,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
