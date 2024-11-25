@@ -1,4 +1,7 @@
 <app-header></app-header>
 <app-search-bar></app-search-bar>
-<app-task [task]="test"></app-task>
+<div class="tasks-list">
+    <app-task *ngFor="let task of tasks" [task]="task"></app-task>
+  </div>
+  
 <router-outlet></router-outlet>
