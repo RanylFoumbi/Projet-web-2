@@ -18,6 +18,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { HeaderComponent } from './components/header/header.component';
 import { SearchBarComponent } from './components/search-bar/search-bar.component';
 import { FormsModule } from '@angular/forms';
+import { FIREBASE_OPTIONS } from '@angular/fire/compat';
+import { environment } from '../environments/env.dev';
 
 @NgModule({
   declarations: [
@@ -40,7 +42,9 @@ import { FormsModule } from '@angular/forms';
     FormsModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [
+    {provide: FIREBASE_OPTIONS, useValue: environment.firebase}
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
