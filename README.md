@@ -23,12 +23,12 @@ Une application multi-plateforme pour la gestion des tâches, développée avec 
 
 ```plaintext
 root/
-├── angular-todo/       # Version Angular
+├── web/       # Version Angular
 │   ├── src/
 │   │   ├── app/        # Composants Angular
 │   │   └── assets/     # Fichiers statiques
 │   └── package.json    # Dépendances Angular
-├── flutter-todo/       # Version Flutter
+├── mobile/       # Version Flutter
 │   ├── lib/
 │   │   ├── screens/    # Écrans principaux
 │   │   ├── widgets/    # Widgets réutilisables
@@ -40,7 +40,7 @@ root/
 Cloner le projet :
 ```bash
 git clone https://github.com/username/todo-app.git
-cd angular-todo
+cd web
 ```
 Installer les dépendances :
 ```bash
@@ -57,7 +57,7 @@ Cloner le projet :
 
 ```bash
 git clone https://github.com/username/todo-app.git
-cd flutter-todo
+cd mobile
 ```
 Installer les dépendances :
 ```bash
