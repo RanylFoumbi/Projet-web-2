@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { Task, TaskStatus } from 'src/app/models/task.model';
+import { ConfirmDialogComponent } from 'src/app/components/confirm-dialog/confirm-dialog.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-home',
@@ -34,7 +36,15 @@ export class HomeComponent {
     }
   ];
 
-  handleRemoveTask(taskId: String) { 
-    this.tasks = this.tasks.filter(task => task.id !== taskId);
+  constructor(private dialog: MatDialog) {}
+
+  handleRemoveTask(taskId: string) {
+    const dialogRef = this.dialog.open(ConfirmDialogComponent);
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result === 'confirm') {
+        this.tasks = this.tasks.filter(task => task.id !== taskId);
+      }
+    });
   }
 }
