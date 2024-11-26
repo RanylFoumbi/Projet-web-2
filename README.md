@@ -10,7 +10,7 @@ Une application multi-plateforme pour la gestion des tâches, développée avec 
 - Ajouter, modifier et supprimer des tâches.
 - Rechercher des tâches par titre ou description.
 - Statuts personnalisés avec des codes couleur :
-  - **Pending** (En attente)
+  - **Todo** (À faire)
   - **In Progress** (En cours)
   - **Completed** (Terminée)
   - **Cancelled** (Annulée)
@@ -77,9 +77,9 @@ Voici les styles utilisés pour les statuts dans l'application Angular :
 
 | Statut        | Bordure  | Fond     | Texte    |
 |---------------|----------|----------|----------|
-| **Doing**   | `#FDE047` | `#FEF9C3` | `#CA8A04` |
+| **Todo**   | `#FDE047` | `#FEF9C3` | `#CA8A04` |
 | **Completed** | `#86EFAC` | `#DCFCE7` | `#16A34A` |
-| **In Progress** | `#93C5FD` | `#DBEAFE` | `#2563EB` |
+| **Doing** | `#93C5FD` | `#DBEAFE` | `#2563EB` |
 | **Cancelled**  | `#FCA5A5` | `#FEE2E2` | `#DC2626` |
 
 ## 🛠️ Technologies Utilisées
