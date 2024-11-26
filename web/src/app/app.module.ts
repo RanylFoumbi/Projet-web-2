@@ -10,6 +10,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import {MatExpansionModule} from '@angular/material/expansion';
+import { MatDialogModule } from '@angular/material/dialog';
 
 
 import { AppRoutingModule } from './app-routing.module';
@@ -24,6 +25,7 @@ import { environment } from '../environments/env.dev';
 import { TaskComponent } from './components/task/task.component';
 import { CapitalizePipe } from './pipes/capitalize.pipe';
 import { HomeComponent } from './pages/home/home.component';
+import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dialog.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +35,7 @@ import { HomeComponent } from './pages/home/home.component';
     TaskComponent,
     CapitalizePipe,
     HomeComponent,
+    ConfirmDialogComponent,
   ],
   imports: [
     BrowserModule,
@@ -49,6 +52,7 @@ import { HomeComponent } from './pages/home/home.component';
     FormsModule,
     HttpClientModule,
     MatExpansionModule,
+    MatDialogModule,
   ],
   providers: [
     {provide: FIREBASE_OPTIONS, useValue: environment.firebase}
