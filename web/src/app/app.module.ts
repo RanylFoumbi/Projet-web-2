@@ -34,6 +34,8 @@ import { CapitalizePipe } from './pipes/capitalize.pipe';
 import { HomeComponent } from './pages/home/home.component';
 import { EditTaskComponent } from './components/edit-task/edit-task.component';
 import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dialog.component';
+import { provideFirebaseApp, initializeApp } from '@angular/fire/app';
+import { provideFirestore, getFirestore } from '@angular/fire/firestore';
 
 @NgModule({
   declarations: [
@@ -67,7 +69,9 @@ import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dial
     ReactiveFormsModule,
     MatSelectModule,
     MatDatepickerModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    provideFirebaseApp(() => initializeApp(environment.firebase)),
+    provideFirestore(() => getFirestore()),
   ],
   providers: [
     {provide: FIREBASE_OPTIONS, useValue: environment.firebase},
