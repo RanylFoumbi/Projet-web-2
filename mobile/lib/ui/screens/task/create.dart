@@ -1,21 +1,24 @@
 import 'package:flutter/material.dart';
+import 'package:todoapp/models/task.dart';
 import 'package:todoapp/ui/widgets/appbar.dart';
 import 'package:todoapp/ui/widgets/button.dart';
 import 'package:todoapp/ui/widgets/datetimepicker.dart';
+import 'package:todoapp/ui/widgets/dropdown.dart';
 import 'package:todoapp/ui/widgets/textformfield.dart';
 import 'package:todoapp/utilities/const/colors.dart';
 import 'package:todoapp/utilities/const/fonts.dart';
 import 'package:todoapp/utilities/const/style.dart';
 
-class CreateTask extends StatefulWidget {
-  final isEditing = false;
-  const CreateTask({super.key});
+class CreateAndEditTask extends StatefulWidget {
+  final bool isEditing;
+  final TaskModel? task;
+  const CreateAndEditTask({super.key, required this.isEditing, this.task});
 
   @override
-  State<CreateTask> createState() => _CreateTaskState();
+  State<CreateAndEditTask> createState() => _CreateAndEditTaskState();
 }
 
-class _CreateTaskState extends State<CreateTask> {
+class _CreateAndEditTaskState extends State<CreateAndEditTask> {
   final _formKey = GlobalKey<FormState>();
   final _scrollController = ScrollController();
   final _titleController = TextEditingController();
@@ -31,9 +34,9 @@ class _CreateTaskState extends State<CreateTask> {
         appBar: PreferredSize(
             preferredSize: const Size.fromHeight(appBarHeight),
             child: CustomAppBar(
-                title: widget.isEditing
-                    ? "Modifier la tâche"
-                    : "Créer une tâche")),
+                title:
+                    widget.isEditing ? "Modifier la tâche" : "Créer une tâche",
+                isHome: false)),
         backgroundColor: UIColors.backgroundColor,
         body: Form(
           key: _formKey,
@@ -91,15 +94,22 @@ class _CreateTaskState extends State<CreateTask> {
                       inputFormatters: const [],
                     ),
                     const SizedBox(height: mdSpacer),
-                    // const Text(
-                    //   "Statut",
-                    //   style: TextStyle(
-                    //       fontSize: FONT_SIZE_SM,
-                    //       color: UIColors.blackColor,
-                    //       fontWeight: FontWeight.w300),
-                    // ),
-                    // const SizedBox(height: xsSpacer),
-                    // const SizedBox(height: mdSpacer),
+                    const Text(
+                      "Statut",
+                      style: TextStyle(
+                          fontSize: FONT_SIZE_SM,
+                          color: UIColors.blackColor,
+                          fontWeight: FontWeight.w300),
+                    ),
+                    const SizedBox(height: xsSpacer),
+                    CustomDropdown(
+                      items: const ['TODO', 'PROCESSING', 'DONE'],
+                      initialValue:
+                          widget.isEditing ? widget.task!.state : 'TODO',
+                      isEditable: true,
+                      onChanged: (String value) {},
+                    ),
+                    const SizedBox(height: mdSpacer),
                     const Text(
                       "Date de début",
                       style: TextStyle(
@@ -173,7 +183,13 @@ class _CreateTaskState extends State<CreateTask> {
   @override
   void initState() {
     super.initState();
+
     if (widget.isEditing) {
+      _titleController.text = widget.task!.title;
+      _descriptionController.text = widget.task!.description;
+
+      _startDateController.text = widget.task!.startDate.toString();
+      _endDateController.text = widget.task!.endDate.toString();
     } else {
       clearForm();
     }

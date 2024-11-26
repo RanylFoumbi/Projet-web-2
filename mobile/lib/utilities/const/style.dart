@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:todoapp/utilities/const/colors.dart';
 
 const double appBarHeight = 70;
 
@@ -26,3 +27,14 @@ extension StringExtension on String {
     return "${this[0].toUpperCase()}${substring(1)}";
   }
 }
+
+final Map<String, String> stateLabels = {
+  'TODO': 'À faire',
+  'PROCESSING': 'En cours',
+  'DONE': 'Terminée',
+};
+final stateColors = {
+  'TODO': UIColors.todoColor,
+  'PROCESSING': UIColors.processingColor,
+  'DONE': UIColors.doneColor,
+};

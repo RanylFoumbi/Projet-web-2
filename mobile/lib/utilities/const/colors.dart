@@ -24,4 +24,5 @@ class UIColors {
   static const Color grayText = Color(0Xff7C879B);
   static const Color blackText = Color(0Xff3D475A);
   static const Color placeholderColor = Color(0XffA6B1B1);
+  
 }

@@ -3,11 +3,13 @@ import 'package:todoapp/utilities/const/colors.dart';
 import 'package:todoapp/utilities/const/fonts.dart';
 import 'package:todoapp/utilities/const/style.dart';
 
+// ignore: must_be_immutable
 class CustomAppBar extends StatelessWidget {
   final String title;
-  final bool isHome = false;
+  bool isHome = false;
   final VoidCallback? onTapped;
-  const CustomAppBar({super.key, required this.title, this.onTapped});
+  CustomAppBar(
+      {super.key, required this.title, required this.isHome, this.onTapped});
 
   @override
   Widget build(BuildContext context) {
@@ -28,12 +30,12 @@ class CustomAppBar extends StatelessWidget {
                     fontWeight: FontWeight.bold),
               ),
               isHome
-                  ? const SizedBox()
-                  : const Icon(
-                      Icons.refresh,
+                  ? const Icon(
+                      Icons.sort_by_alpha_rounded,
                       color: UIColors.blackColor,
                       size: 20,
-                    ),
+                    )
+                  : const SizedBox(),
             ],
           ),
           automaticallyImplyLeading: isHome ? false : true,

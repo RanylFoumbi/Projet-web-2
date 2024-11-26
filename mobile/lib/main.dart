@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:todoapp/ui/screens/home.dart';
-import 'package:todoapp/ui/screens/task/create.dart';
 
 void main() {
   runApp(const Main());
@@ -18,9 +17,6 @@ class Main extends StatelessWidget {
         useMaterial3: true,
       ),
       home: const Home(),
-      routes: <String, WidgetBuilder>{
-        '/create-task': (BuildContext context) => const CreateTask(),
-      },
     );
   }
 }
