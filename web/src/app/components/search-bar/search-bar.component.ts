@@ -10,9 +10,7 @@ export class SearchBarComponent {
   @Output() add = new EventEmitter<void>();
 
   submitSearch = () => {
-    if(this.searchTerm.length > 0) {
-      this.search.emit(this.searchTerm || undefined);
-    }
+    this.search.emit(this.searchTerm);
   }
 
   addNewTask = () => {

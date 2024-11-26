@@ -3,6 +3,8 @@ export type Task = {
     title: string;
     description: string;
     state: TaskState;
+    startDate: Date;
+    endDate: Date;
 };
 
 export enum TaskState {
@@ -10,4 +12,9 @@ export enum TaskState {
     DONE = 'Terminée',
     CANCELLED = 'Annulée',
     TODO = 'À faire',
+}
+
+export type STateUpdate = {
+    id: string;
+    state: TaskState;
 }

@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { EditTaskComponent } from './components/edit-task/edit-task.component';
 import { TaskServiceService } from './services/task-service.service';
+import { Task } from './models/task.model';
 
 @Component({
   selector: 'app-root',
@@ -19,9 +20,9 @@ export class AppComponent {
     const dialog = this.dialog.open(EditTaskComponent, {
       width: '500px',
     });
-    dialog.afterClosed().subscribe((result) => {
-      if (typeof result == 'object') {
-        console.log(result);
+    dialog.afterClosed().subscribe((result: Task) => {
+      if (result) {
+        this.taskService.addTask(result);
       }
     });
   }

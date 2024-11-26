@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, Output, HostListener } from '@angular/core';
-import { Task, TaskState } from 'src/app/models/task.model';
+import { STateUpdate, Task, TaskState } from 'src/app/models/task.model';
 
 @Component({
   selector: 'app-task',
@@ -9,7 +9,8 @@ export class TaskComponent {
   TaskState = TaskState;
   @Input() task!: Task;
   @Output() remove = new EventEmitter<string>();
-  @Output() update = new EventEmitter<string>();
+  @Output() update = new EventEmitter<Task>();
+  @Output() updateState = new EventEmitter<Task>();
 
   isDropdownVisible = false;
   dropdownPosition: { left: number; top: number } | null = null;
@@ -32,6 +33,7 @@ export class TaskComponent {
 
   changeState(state: string) {
     this.task.state = state as TaskState;
+    this.updateState.emit(this.task);
     this.isDropdownVisible = false;
   }
 
@@ -66,6 +68,6 @@ export class TaskComponent {
 
   updateTask = (event: Event) => {
     event.stopPropagation();
-    this.update.emit(this.task.id);
+    this.update.emit(this.task);
   }
 }

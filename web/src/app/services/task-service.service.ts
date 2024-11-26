@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Firestore, collection, collectionData, addDoc, doc, deleteDoc, setDoc } from '@angular/fire/firestore';
 import { Task, TaskState } from '../models/task.model';
 import { BehaviorSubject, Subscription } from 'rxjs';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +12,10 @@ export class TaskServiceService {
   task = new BehaviorSubject<Task[]>([])
   taskListSubscription?: Subscription;
 
-  constructor(private firestore: Firestore) { 
+  constructor(
+    private readonly snackBar: MatSnackBar,
+    private readonly firestore: Firestore
+  ) {
     this.retrieveTasks();
   }
 
@@ -33,13 +37,14 @@ export class TaskServiceService {
     }
     const tasksCollection = collection(this.firestore, 'tasks');
     collectionData(tasksCollection).subscribe((tasks) => {
-      
       const mappedTasks = tasks.map<Task>((task) => {
         return {
           id: task['id'],
           title: task['title'],
           description: task['description'],
-          state: task['state'] as TaskState
+          state: task['state'] as TaskState,
+          startDate: task['startDate'].toDate(),
+          endDate: task['endDate'].toDate(),
         }
       });
 
@@ -52,11 +57,13 @@ export class TaskServiceService {
     if (task.id) {
       const taskDocRef = doc(this.firestore, `tasks/${task.id}`);
       await setDoc(taskDocRef, task);
+      this.snackBar.open('Tache mise à jour avec succès', 'OK', {duration: 3000});
     } else {
       const tasksCollectionRef = collection(this.firestore, 'tasks');
       const docRef = await addDoc(tasksCollectionRef, task);
       task.id = docRef.id;
       await setDoc(docRef, task);
+      this.snackBar.open('Tache ajoutée avec succès', 'OK', {duration: 3000});
     }
     this.retrieveTasks()
   }

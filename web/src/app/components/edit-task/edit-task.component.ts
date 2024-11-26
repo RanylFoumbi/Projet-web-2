@@ -21,22 +21,21 @@ export class EditTaskComponent {
       title: new FormControl(data?.task?.title, [Validators.required]),
       description: new FormControl(data?.task.description, [Validators.required]),
       state: new FormControl(data?.task.state ?? TaskState.TODO, [Validators.required]),
-      startDate: new FormControl(new Date(), [Validators.required, this.dateValidator()]),
-      endDate: new FormControl(new Date(), [Validators.required, this.dateValidator()]),
+      startDate: new FormControl(data?.task.startDate ?? new Date(), [Validators.required, this.dateValidator()]),
+      endDate: new FormControl(data?.task.endDate ?? new Date(), [Validators.required, this.dateValidator()]),
     });
   }
-
-  @Output() save = new EventEmitter<Task>();
-
 
   dateValidator(): ValidatorFn {
     return (control: AbstractControl): ValidationErrors | null => {
       const currentDate = new Date();
+      currentDate.setHours(0, 0, 0, 0);
       const selectedDate = new Date(control.value);
+      selectedDate.setHours(0, 0, 0, 0);
       if (selectedDate < currentDate) {
         return { invalidDate: 'Date cannot be in the past' };
       }
-      return null
-    }
+      return null;
+    };
   }
 }
