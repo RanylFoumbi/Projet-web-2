@@ -14,15 +14,13 @@ export class TaskComponent {
   dropdownPosition: { left: number; top: number } | null = null;
   statuses: string[] = Object.values(TaskStatus);
 
-  // toggle dropdown visibility and set its position
   toggleStatusDropdown(event: MouseEvent) {
+    event.stopPropagation();
     this.isDropdownVisible = !this.isDropdownVisible;
     
     if (this.isDropdownVisible) {
-      // get the position of the status span relative to the page
       const statusElement = event.target as HTMLElement;
       const rect = statusElement.getBoundingClientRect();
-      // set dropdown position to the right of the span element
       this.dropdownPosition = {
         left: rect.right,
         top: rect.top, 
@@ -49,7 +47,6 @@ export class TaskComponent {
         return 'border-red-300 bg-red-100 text-red-600';
     }
   }
-  // toggle dropdown visibility on outside click
   @HostListener('document:click', ['$event'])
   closeDropdownOnOutsideClick(event: MouseEvent) {
     const dropdown = document.getElementById('status-dropdown-' + this.task.id);
@@ -59,11 +56,13 @@ export class TaskComponent {
     }
   }
 
-  removeTask = () => {
+  removeTask = (event: Event) => {
+    event.stopPropagation();
     this.remove.emit(this.task.id);
   }
 
-  updateTask = () => {
+  updateTask = (event: Event) => {
+    event.stopPropagation();
     this.update.emit(this.task.id);
   }
 }
