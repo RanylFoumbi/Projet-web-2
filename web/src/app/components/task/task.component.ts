@@ -15,7 +15,7 @@ export class TaskComponent {
     switch (this.task.status) {
       case TaskStatus.Completed:
         return 'border-green-300 bg-green-100 text-green-600';
-      case TaskStatus.Pending:
+      case TaskStatus.Doing:
         return 'border-yellow-300 bg-yellow-100 text-yellow-600';
       case TaskStatus.Todo:
         return 'border-blue-300 bg-blue-100 text-blue-600';

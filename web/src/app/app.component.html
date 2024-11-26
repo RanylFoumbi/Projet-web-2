@@ -1,3 +1,5 @@
 <app-header></app-header>
-<app-search-bar></app-search-bar>
+<app-search-bar
+    (search)="handleSearch($event)">
+</app-search-bar>
 <router-outlet></router-outlet>

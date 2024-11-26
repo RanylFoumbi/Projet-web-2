@@ -14,7 +14,7 @@ export class HomeComponent {
       id: '1',
       title: 'Manger',
       description: 'Manger des frites avec du ketchup et du poulet frit avec du riz et des légumes verts au dîner',
-      status: TaskStatus.Pending
+      status: TaskStatus.Doing
     },
     {
       id: '2',
@@ -46,5 +46,18 @@ export class HomeComponent {
         this.tasks = this.tasks.filter(task => task.id !== taskId);
       }
     });
+  }
+
+  filteredTasks: Task[] = [...this.tasks];
+
+  handleSearch(term: string | undefined) {
+    if (!term) {
+      this.filteredTasks = [...this.tasks]; 
+    } else {
+      this.filteredTasks = this.tasks.filter((task) =>
+        task.title.toLowerCase().includes(term.toLowerCase()) || 
+        task.description.toLowerCase().includes(term.toLowerCase()) 
+      );
+    }
   }
 }
