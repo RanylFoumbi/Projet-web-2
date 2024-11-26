@@ -8,9 +8,9 @@
             <textarea matInput formControlName="description" placeholder="Task description" rows="5"></textarea>
         </mat-form-field>
         <mat-form-field>
-            <mat-select formControlName="status">
-                <mat-option *ngFor="let status of TaskStatus | keyvalue" [value]="status.value">
-                    {{ status.key }}
+            <mat-select formControlName="state">
+                <mat-option *ngFor="let state of TaskStatus | keyvalue" [value]="state.key">
+                    {{ state.value }}
                 </mat-option>
             </mat-select>
         </mat-form-field>

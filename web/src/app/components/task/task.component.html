@@ -1,36 +1,30 @@
 <div class="flex justify-center items-center p-4">
-    <mat-expansion-panel hideToggle class="max-w-3xl w-full flex flex-col gap-3 items-center">
-      <mat-expansion-panel-header class="flex justify-between">
-        <mat-panel-title> {{ task.title | capitalize }} </mat-panel-title>
-        <div class="flex items-center relative">
-          <span
-            [ngClass]="getStatusClasses()"
-            class="rounded-md mr-2 border px-2 py-1 cursor-pointer select-none"
-            (click)="toggleStatusDropdown($event)"
-          >
-            {{ task.status }}
-          </span>
-  
-          <button mat-icon-button (click)="updateTask($event)">
-            <mat-icon class="text-gray-500">edit</mat-icon>
-          </button>
-          <button mat-icon-button (click)="removeTask($event)">
-            <mat-icon class="text-gray-500">delete</mat-icon>
-          </button>
-        </div>
-      </mat-expansion-panel-header>
-      <p>{{ task.description }}</p>
-    </mat-expansion-panel>
+  <mat-expansion-panel hideToggle class="max-w-3xl w-full flex flex-col gap-3 items-center">
+    <mat-expansion-panel-header class="flex justify-between">
+      <mat-panel-title> {{ task.title | capitalize }} </mat-panel-title>
+      <div class="flex items-center relative">
+        <span [ngClass]="getStatusClasses()" class="rounded-md mr-2 border px-2 py-1 cursor-pointer select-none"
+          (click)="toggleStatusDropdown($event)">
+          {{ task.state | keyToDescription : TaskState }}
+        </span>
+
+        <button mat-icon-button (click)="updateTask($event)">
+          <mat-icon class="text-gray-500">edit</mat-icon>
+        </button>
+        <button mat-icon-button (click)="removeTask($event)">
+          <mat-icon class="text-gray-500">delete</mat-icon>
+        </button>
+      </div>
+    </mat-expansion-panel-header>
+    <p>{{ task.description }}</p>
+  </mat-expansion-panel>
+</div>
+
+<div *ngIf="isDropdownVisible" id="state-dropdown-{{ task.id }}"
+  [ngStyle]="{ left: dropdownPosition?.left + 'px', top: dropdownPosition?.top + 'px' }"
+  class="absolute w-48 bg-white border rounded-md shadow-lg z-10 max-h-60 overflow-y-auto">
+  <div *ngFor="let state of TaskState | keyvalue" class="px-4 py-2 cursor-pointer hover:bg-gray-200"
+    (click)="changeState(state.key)">
+    {{ state.value }}
   </div>
-  
-  <div *ngIf="isDropdownVisible" 
-       id="status-dropdown-{{ task.id }}"
-       [ngStyle]="{ left: dropdownPosition?.left + 'px', top: dropdownPosition?.top + 'px' }"
-       class="absolute w-48 bg-white border rounded-md shadow-lg z-10 max-h-60 overflow-y-auto">
-    <div *ngFor="let status of statuses" 
-         class="px-4 py-2 cursor-pointer hover:bg-gray-200"
-         (click)="changeStatus(status)">
-      {{ status }}
-    </div>
-  </div>
-  
+</div>

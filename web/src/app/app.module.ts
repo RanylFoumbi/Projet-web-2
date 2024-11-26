@@ -36,6 +36,7 @@ import { EditTaskComponent } from './components/edit-task/edit-task.component';
 import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dialog.component';
 import { provideFirebaseApp, initializeApp } from '@angular/fire/app';
 import { provideFirestore, getFirestore } from '@angular/fire/firestore';
+import { KeyToDescriptionPipe } from './pipes/key-to-description.pipe';
 
 @NgModule({
   declarations: [
@@ -47,6 +48,7 @@ import { provideFirestore, getFirestore } from '@angular/fire/firestore';
     HomeComponent,
     EditTaskComponent,
     ConfirmDialogComponent,
+    KeyToDescriptionPipe,
   ],
   imports: [
     BrowserModule,

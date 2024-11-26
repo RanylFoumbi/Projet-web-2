@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Inject, Input, OnInit, Output } from '@angular/core';
 import { AbstractControl, FormBuilder, FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { Task, TaskStatus } from 'src/app/models/task.model';
+import { Task, TaskState } from 'src/app/models/task.model';
 
 @Component({
   selector: 'app-edit-task',
@@ -9,7 +9,7 @@ import { Task, TaskStatus } from 'src/app/models/task.model';
 })
 export class EditTaskComponent {
 
-  TaskStatus = TaskStatus;
+  TaskStatus = TaskState;
   form: FormGroup;
 
   constructor(
@@ -20,7 +20,7 @@ export class EditTaskComponent {
       id: new FormControl(data?.task?.id),
       title: new FormControl(data?.task?.title, [Validators.required]),
       description: new FormControl(data?.task.description, [Validators.required]),
-      status: new FormControl(data?.task.status ?? TaskStatus.Todo, [Validators.required]),
+      state: new FormControl(data?.task.state ?? TaskState.TODO, [Validators.required]),
       startDate: new FormControl(new Date(), [Validators.required, this.dateValidator()]),
       endDate: new FormControl(new Date(), [Validators.required, this.dateValidator()]),
     });

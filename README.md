@@ -10,10 +10,10 @@ Une application multi-plateforme pour la gestion des tâches, développée avec 
 - Ajouter, modifier et supprimer des tâches.
 - Rechercher des tâches par titre ou description.
 - Statuts personnalisés avec des codes couleur :
-  - **Todo** (À faire)
-  - **In Progress** (En cours)
-  - **Completed** (Terminée)
-  - **Cancelled** (Annulée)
+  - **TODO** (À faire)
+  - **DOING** (En cours)
+  - **DONE** (Terminée)
+  - **CANCELLED** (Annulée)
 - Interface responsive pour le web.
 - Application mobile Flutter offrant une expérience utilisateur native.
 
@@ -77,10 +77,10 @@ Voici les styles utilisés pour les statuts dans l'application Angular :
 
 | Statut        | Bordure  | Fond     | Texte    |
 |---------------|----------|----------|----------|
-| **Todo**   | `#FDE047` | `#FEF9C3` | `#CA8A04` |
-| **Completed** | `#86EFAC` | `#DCFCE7` | `#16A34A` |
-| **Doing** | `#93C5FD` | `#DBEAFE` | `#2563EB` |
-| **Cancelled**  | `#FCA5A5` | `#FEE2E2` | `#DC2626` |
+| **TODO**   | `#FDE047` | `#FEF9C3` | `#CA8A04` |
+| **DONE** | `#86EFAC` | `#DCFCE7` | `#16A34A` |
+| **DOING** | `#93C5FD` | `#DBEAFE` | `#2563EB` |
+| **CANCELLED**  | `#FCA5A5` | `#FEE2E2` | `#DC2626` |
 
 ## 🛠️ Technologies Utilisées
 **Angular**: Framework front-end pour le web.

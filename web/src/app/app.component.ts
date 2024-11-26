@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { EditTaskComponent } from './components/edit-task/edit-task.component';
+import { TaskServiceService } from './services/task-service.service';
 
 @Component({
   selector: 'app-root',
@@ -9,8 +10,10 @@ import { EditTaskComponent } from './components/edit-task/edit-task.component';
 export class AppComponent {
 
   title = 'Todo web';
-  searchTerm = '';
-  constructor(private readonly dialog: MatDialog) { }
+  constructor(
+    private readonly dialog: MatDialog,
+    private readonly taskService: TaskServiceService
+  ) { }
 
   createTask = () => {
     const dialog = this.dialog.open(EditTaskComponent, {
@@ -24,8 +27,7 @@ export class AppComponent {
   }
 
   handleSearch(term: string | undefined) {
-    this.searchTerm = term || '';
-    console.log('Search Term:', this.searchTerm);
+    this.taskService.searchTask(term);
   }
 }
 
