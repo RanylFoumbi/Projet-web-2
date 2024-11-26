@@ -7,6 +7,9 @@ import { EditTaskComponent } from './components/edit-task/edit-task.component';
   templateUrl: './app.component.html',
 })
 export class AppComponent {
+
+  title = 'Todo web';
+  searchTerm = '';
   constructor(private readonly dialog: MatDialog) { }
 
   createTask = () => {
@@ -14,9 +17,15 @@ export class AppComponent {
       width: '500px',
     });
     dialog.afterClosed().subscribe((result) => {
-      if( typeof result == 'object') {
+      if (typeof result == 'object') {
         console.log(result);
       }
     });
   }
+
+  handleSearch(term: string | undefined) {
+    this.searchTerm = term || '';
+    console.log('Search Term:', this.searchTerm);
+  }
 }
+

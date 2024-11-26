@@ -11,7 +11,7 @@ export class SearchBarComponent {
 
   submitSearch = () => {
     if(this.searchTerm.length > 0) {
-      this.search.emit(this.searchTerm);
+      this.search.emit(this.searchTerm || undefined);
     }
   }
 

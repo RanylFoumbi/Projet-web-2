@@ -14,7 +14,7 @@ export class HomeComponent {
       id: '1',
       title: 'Manger',
       description: 'Manger des frites avec du ketchup et du poulet frit avec du riz et des légumes verts au dîner',
-      status: TaskStatus.Pending
+      status: TaskStatus.Doing
     },
     {
       id: '2',
