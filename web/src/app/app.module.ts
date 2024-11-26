@@ -17,6 +17,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import {MatSelectModule} from '@angular/material/select';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
+import {MatCheckboxModule, MAT_CHECKBOX_DEFAULT_OPTIONS} from '@angular/material/checkbox';
 
 
 
@@ -27,7 +28,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { HeaderComponent } from './components/header/header.component';
 import { SearchBarComponent } from './components/search-bar/search-bar.component';
 import { FormsModule } from '@angular/forms';
-import { FIREBASE_OPTIONS } from '@angular/fire/compat';
 import { environment } from '../environments/env.dev';
 import { TaskComponent } from './components/task/task.component';
 import { CapitalizePipe } from './pipes/capitalize.pipe';
@@ -72,12 +72,12 @@ import { KeyToDescriptionPipe } from './pipes/key-to-description.pipe';
     MatSelectModule,
     MatDatepickerModule,
     MatNativeDateModule,
+    MatCheckboxModule,
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideFirestore(() => getFirestore()),
   ],
   providers: [
-    {provide: FIREBASE_OPTIONS, useValue: environment.firebase},
-    {provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: {appearance: 'outline'}}
+    {provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: {appearance: 'outline'}},
   ],
   bootstrap: [AppComponent]
 })

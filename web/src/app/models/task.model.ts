@@ -14,7 +14,7 @@ export enum TaskState {
     TODO = 'À faire',
 }
 
-export type STateUpdate = {
+export type SelectTask = {
     id: string;
-    state: TaskState;
+    selected: Boolean;
 }

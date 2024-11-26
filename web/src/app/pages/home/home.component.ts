@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Task } from 'src/app/models/task.model';
+import { SelectTask, Task } from 'src/app/models/task.model';
 import { ConfirmDialogComponent } from 'src/app/components/confirm-dialog/confirm-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
 import { EditTaskComponent } from 'src/app/components/edit-task/edit-task.component';
@@ -22,6 +22,10 @@ export class HomeComponent implements OnInit {
     this.taskService.task.subscribe((tasks) => {
       this.tasks = tasks;
     });
+  }
+
+  handleSelectTask(selectTask: SelectTask) {
+    this.taskService.handleTaskSelection(selectTask);
   }
 
   handleRemoveTask(taskId: string) {

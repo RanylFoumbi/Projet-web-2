@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, Output, HostListener } from '@angular/core';
-import { Task, TaskState } from 'src/app/models/task.model';
+import { MatCheckboxChange } from '@angular/material/checkbox';
+import { SelectTask, Task, TaskState } from 'src/app/models/task.model';
 
 @Component({
   selector: 'app-task',
@@ -8,9 +9,11 @@ import { Task, TaskState } from 'src/app/models/task.model';
 export class TaskComponent {
   TaskState = TaskState;
   @Input() task!: Task;
+  @Input() selected = false;
   @Output() remove = new EventEmitter<string>();
   @Output() update = new EventEmitter<Task>();
   @Output() updateState = new EventEmitter<Task>();
+  @Output() select = new EventEmitter<SelectTask>();
 
   isDropdownVisible = false;
   dropdownPosition: { left: number; top: number } | null = null;
@@ -29,6 +32,11 @@ export class TaskComponent {
     } else {
       this.dropdownPosition = null;
     }
+  }
+
+  selectTask(event: MatCheckboxChange) {
+    this.selected = event.checked;
+    this.select.emit({ id: this.task.id, selected: this.selected });
   }
 
   changeState(state: string) {

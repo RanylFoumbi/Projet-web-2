@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Firestore, collection, collectionData, addDoc, doc, deleteDoc, setDoc } from '@angular/fire/firestore';
-import { Task, TaskState } from '../models/task.model';
+import { SelectTask, Task, TaskState } from '../models/task.model';
 import { BehaviorSubject, Subscription } from 'rxjs';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
@@ -10,6 +10,8 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 export class TaskServiceService {
 
   task = new BehaviorSubject<Task[]>([])
+  selectedTasks = new BehaviorSubject<Task[]>([])
+
   taskListSubscription?: Subscription;
 
   constructor(
@@ -17,6 +19,16 @@ export class TaskServiceService {
     private readonly firestore: Firestore
   ) {
     this.retrieveTasks();
+  }
+
+  handleTaskSelection(selectTask: SelectTask) {
+    if (selectTask.selected) {
+      this.selectedTasks.next([...this.selectedTasks.value,
+      this.task.value.find(task => task.id === selectTask.id)!]);
+    } else {
+      this.selectedTasks.next(this.selectedTasks.value
+        .filter(task => task.id !== selectTask.id));
+    }
   }
 
   searchTask(term: string | undefined) {
@@ -57,13 +69,13 @@ export class TaskServiceService {
     if (task.id) {
       const taskDocRef = doc(this.firestore, `tasks/${task.id}`);
       await setDoc(taskDocRef, task);
-      this.snackBar.open('Tache mise à jour avec succès', 'OK', {duration: 3000});
+      this.snackBar.open('Tache mise à jour avec succès', 'OK', { duration: 3000 });
     } else {
       const tasksCollectionRef = collection(this.firestore, 'tasks');
       const docRef = await addDoc(tasksCollectionRef, task);
       task.id = docRef.id;
       await setDoc(docRef, task);
-      this.snackBar.open('Tache ajoutée avec succès', 'OK', {duration: 3000});
+      this.snackBar.open('Tache ajoutée avec succès', 'OK', { duration: 3000 });
     }
     this.retrieveTasks()
   }
@@ -73,5 +85,16 @@ export class TaskServiceService {
     const taskRef = doc(this.firestore, 'tasks', taskId);
     await deleteDoc(taskRef);
     this.retrieveTasks();
+  }
+
+  // Delete all tasks
+  async deleteAll(): Promise<void> {
+    this.selectedTasks.value.forEach(async (task) => {
+      const taskRef = doc(this.firestore, 'tasks', task.id);
+      await deleteDoc(taskRef);
+    });
+    this.retrieveTasks();
+    this.selectedTasks.next([]);
+    this.snackBar.open('Taches supprimées avec succès', 'OK', { duration: 3000 });
   }
 }

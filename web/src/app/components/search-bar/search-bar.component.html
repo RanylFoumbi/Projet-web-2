@@ -9,6 +9,9 @@
             <span class="text-gray-400 hover:cursor-pointer" (click)="addNewTask()">
                 <mat-icon>add</mat-icon>
             </span>
+            <span *ngIf="showDeleteIcon" class="text-gray-400 hover:cursor-pointer" (click)="delete.emit()">
+                <mat-icon>delete</mat-icon>
+            </span>
         </div>
     </mat-card-content>
 </mat-card>
