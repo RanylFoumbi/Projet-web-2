@@ -39,7 +39,7 @@ root/
 ### Angular (Web)
 Cloner le projet :
 ```bash
-git clone https://github.com/username/todo-app.git
+git clone https://github.com/RanylFoumbi/Projet-web-2.git
 cd web
 ```
 Installer les dépendances :
@@ -56,7 +56,7 @@ Le projet sera accessible à http://localhost:4200.
 Cloner le projet :
 
 ```bash
-git clone https://github.com/username/todo-app.git
+git clone https://github.com/RanylFoumbi/Projet-web-2.git
 cd mobile
 ```
 Installer les dépendances :
