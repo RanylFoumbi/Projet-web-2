@@ -13,7 +13,7 @@ Une application multi-plateforme pour la gestion des tâches, développée avec 
   - **Pending** (En attente)
   - **In Progress** (En cours)
   - **Completed** (Terminée)
-  - **Archived** (Archivée)
+  - **Cancelled** (Annulée)
 - Interface responsive pour le web.
 - Application mobile Flutter offrant une expérience utilisateur native.
 
