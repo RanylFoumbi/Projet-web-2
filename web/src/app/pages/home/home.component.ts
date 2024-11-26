@@ -34,7 +34,7 @@ export class HomeComponent {
     }
   ];
 
-  handleRemoveTask(taskId: string) { 
+  handleRemoveTask(taskId: String) { 
     this.tasks = this.tasks.filter(task => task.id !== taskId);
   }
 }
