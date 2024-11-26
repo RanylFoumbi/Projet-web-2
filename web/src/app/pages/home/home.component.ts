@@ -48,16 +48,13 @@ export class HomeComponent {
     });
   }
 
-  filteredTasks: Task[] = [...this.tasks];
+  filteredTasks: Task[] = [...this.tasks]; 
+  searchQuery: string = '';
 
-  handleSearch(term: string | undefined) {
-    if (!term) {
-      this.filteredTasks = [...this.tasks]; 
-    } else {
-      this.filteredTasks = this.tasks.filter((task) =>
-        task.title.toLowerCase().includes(term.toLowerCase()) || 
-        task.description.toLowerCase().includes(term.toLowerCase()) 
-      );
-    }
+  filterTasks() {
+    const query = this.searchQuery.toLowerCase();
+    this.filteredTasks = this.tasks.filter(task =>
+      task.title.toLowerCase().includes(query) || task.description.toLowerCase().includes(query)
+    );
   }
 }

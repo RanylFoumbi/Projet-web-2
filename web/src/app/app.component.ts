@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -8,12 +7,10 @@ import { Router } from '@angular/router';
 export class AppComponent {
   title = 'Todo web';
 
-  searchTerm = '';
+searchTerm = '';
 
-  constructor(private router: Router) {}
-
-  onSearch(term: string | undefined) {
+  handleSearch(term: string | undefined) {
     this.searchTerm = term || '';
-    this.router.navigate(['/home'], { queryParams: { search: this.searchTerm } });
+    console.log('Search Term:', this.searchTerm);
   }
 }
