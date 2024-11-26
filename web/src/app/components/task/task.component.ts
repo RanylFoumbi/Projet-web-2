@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, Output, HostListener } from '@angular/core';
-import { STateUpdate, Task, TaskState } from 'src/app/models/task.model';
+import { Task, TaskState } from 'src/app/models/task.model';
 
 @Component({
   selector: 'app-task',
