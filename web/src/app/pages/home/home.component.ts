@@ -24,7 +24,7 @@ export class HomeComponent {
       id: '3',
       title: 'Étudier',
       description: 'Étudier pour l\'examen de mathématiques',
-      status: TaskStatus.InProgress
+      status: TaskStatus.Todo
     },
     {
       id: '4',
