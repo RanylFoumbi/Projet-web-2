@@ -24,6 +24,7 @@ import { environment } from '../environments/env.dev';
 import { TaskComponent } from './components/task/task.component';
 import { CapitalizePipe } from './pipes/capitalize.pipe';
 import { HomeComponent } from './pages/home/home.component';
+import { EditTaskComponent } from './components/edit-task/edit-task.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import { HomeComponent } from './pages/home/home.component';
     TaskComponent,
     CapitalizePipe,
     HomeComponent,
+    EditTaskComponent,
   ],
   imports: [
     BrowserModule,
