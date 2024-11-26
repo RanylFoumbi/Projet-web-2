@@ -8,8 +8,8 @@ import { Task, TaskStatus } from 'src/app/models/task.model';
 export class TaskComponent {
 
   @Input() task!: Task;
-  @Output() remove = new EventEmitter<String>();
-  @Output() update = new EventEmitter<String>();
+  @Output() remove = new EventEmitter<string>();
+  @Output() update = new EventEmitter<string>();
 
   getStatusClasses(): string {
     switch (this.task.status) {

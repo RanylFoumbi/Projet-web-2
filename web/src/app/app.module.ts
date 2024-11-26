@@ -32,7 +32,7 @@ import { HomeComponent } from './pages/home/home.component';
     SearchBarComponent,
     TaskComponent,
     CapitalizePipe,
-    HomeComponent
+    HomeComponent,
   ],
   imports: [
     BrowserModule,
