@@ -20,7 +20,7 @@ export class EditTaskComponent {
       id: new FormControl(data?.task?.id),
       title: new FormControl(data?.task?.title, [Validators.required]),
       description: new FormControl(data?.task.description, [Validators.required]),
-      state: new FormControl(data?.task.state ?? TaskState.TODO, [Validators.required]),
+      state: new FormControl(data?.task.state ?? 'TODO', [Validators.required]),
       startDate: new FormControl(data?.task.startDate ?? new Date(), [Validators.required, this.dateValidator()]),
       endDate: new FormControl(data?.task.endDate ?? new Date(), [Validators.required, this.dateValidator()]),
     });

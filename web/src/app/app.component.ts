@@ -3,6 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { EditTaskComponent } from './components/edit-task/edit-task.component';
 import { TaskServiceService } from './services/task-service.service';
 import { Task } from './models/task.model';
+import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dialog.component';
 
 @Component({
   selector: 'app-root',
@@ -40,7 +41,12 @@ export class AppComponent implements OnInit {
   }
 
   handleDelete() {
-    this.taskService.deleteAll();
+    const dialogRef = this.dialog.open(ConfirmDialogComponent);
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result === 'confirm') {
+        this.taskService.deleteAll();      }
+    });
   }
 }
 
