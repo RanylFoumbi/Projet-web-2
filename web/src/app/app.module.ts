@@ -11,6 +11,13 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import {MatExpansionModule} from '@angular/material/expansion';
 import { MatDialogModule } from '@angular/material/dialog';
+import {MatFormFieldModule, MAT_FORM_FIELD_DEFAULT_OPTIONS} from '@angular/material/form-field';
+import {MatInputModule} from '@angular/material/input';
+import { ReactiveFormsModule } from '@angular/forms';
+import {MatSelectModule} from '@angular/material/select';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+
 
 
 import { AppRoutingModule } from './app-routing.module';
@@ -55,9 +62,16 @@ import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dial
     HttpClientModule,
     MatExpansionModule,
     MatDialogModule,
+    MatFormFieldModule,
+    MatInputModule,
+    ReactiveFormsModule,
+    MatSelectModule,
+    MatDatepickerModule,
+    MatNativeDateModule
   ],
   providers: [
-    {provide: FIREBASE_OPTIONS, useValue: environment.firebase}
+    {provide: FIREBASE_OPTIONS, useValue: environment.firebase},
+    {provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: {appearance: 'outline'}}
   ],
   bootstrap: [AppComponent]
 })

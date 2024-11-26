@@ -2,11 +2,11 @@ import { Component } from '@angular/core';
 import { Task, TaskStatus } from 'src/app/models/task.model';
 import { ConfirmDialogComponent } from 'src/app/components/confirm-dialog/confirm-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
+import { EditTaskComponent } from 'src/app/components/edit-task/edit-task.component';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css']
 })
 export class HomeComponent {
   tasks: Task[] = [
@@ -36,7 +36,7 @@ export class HomeComponent {
     }
   ];
 
-  constructor(private dialog: MatDialog) {}
+  constructor(private readonly dialog: MatDialog) { }
 
   handleRemoveTask(taskId: string) {
     const dialogRef = this.dialog.open(ConfirmDialogComponent);
@@ -44,6 +44,21 @@ export class HomeComponent {
     dialogRef.afterClosed().subscribe(result => {
       if (result === 'confirm') {
         this.tasks = this.tasks.filter(task => task.id !== taskId);
+      }
+    });
+  }
+
+  handleUpdateTask(id: String) {
+    const dialogRef = this.dialog.open(EditTaskComponent, {
+      width: '500px',
+      data: {
+        task: this.tasks.find(t => t.id === id)
+      }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.tasks = this.tasks.map(t => (t.id === result.id ? result : t));
       }
     });
   }

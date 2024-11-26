@@ -3,5 +3,6 @@
       *ngFor="let task of tasks" 
       [task]="task" 
       (remove)="handleRemoveTask($event)"
+      (update)="handleUpdateTask($event)"
     ></app-task>
 </div>
