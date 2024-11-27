@@ -9,9 +9,9 @@
       <span class="text-gray-400 hover:cursor-pointer" (click)="addNewTask()">
         <mat-icon>add</mat-icon>
       </span>
-      <button mat-button [matMenuTriggerFor]="menu" class="flex-nowrap whitespace-nowrap">
-        <span class="text-gray-400 overflow-hidden text-ellipsis">{{getStateDisplay()}}</span>
-      </button>
+      <span mat-button [matMenuTriggerFor]="menu" class="
+      text-gray-400 text-center text-ellipsis select-none cursor-pointer whitespace-nowrap">
+        {{getStateDisplay()}}</span>
       <mat-menu #menu="matMenu">
         <button mat-menu-item (click)="switchSate('ALL')">
           {{fieldTranslation}}</button>
