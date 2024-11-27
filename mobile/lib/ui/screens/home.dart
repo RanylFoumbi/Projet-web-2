@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:todoapp/models/task.dart';
-import 'package:todoapp/ui/screens/task/create.dart';
+import 'package:todoapp/services/task.dart';
+import 'package:todoapp/ui/screens/task/create-edit.dart';
 import 'package:todoapp/ui/widgets/appbar.dart';
 import 'package:todoapp/ui/widgets/task.dart';
 import 'package:todoapp/ui/widgets/textformfield.dart';
 import 'package:todoapp/utilities/const/colors.dart';
+import 'package:todoapp/utilities/const/fonts.dart';
 import 'package:todoapp/utilities/const/style.dart';
 
 class Home extends StatefulWidget {
@@ -14,17 +16,22 @@ class Home extends StatefulWidget {
   State createState() => _HomeState();
 }
 
-class _HomeState extends State {
+class _HomeState extends State<Home> {
   final TextEditingController _searchController = TextEditingController();
-  List _filteredTasks = taskList;
   final Set<String> _selectedTaskIds = {};
+  List<TaskModel> _filteredTasks = [];
+  List<TaskModel> _taskList = [];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar:  PreferredSize(
+      appBar: PreferredSize(
         preferredSize: const Size.fromHeight(appBarHeight),
-        child: CustomAppBar(title: 'TodoApp', isHome: true),
+        child: CustomAppBar(
+          title: 'TodoApp',
+          isHome: true,
+          onTapped: () {}, // No need for manual refresh
+        ),
       ),
       backgroundColor: UIColors.backgroundColor,
       body: Column(
@@ -47,53 +54,86 @@ class _HomeState extends State {
                     )
                   : null,
               prefixIcon: const Icon(Icons.search),
-              validator: (value) {
-                return null;
-              },
+              validator: (value) => null,
               protected: false,
               inputFormatters: const [],
             ),
           ),
           const SizedBox(height: smSpacer),
-          Expanded(
-            child: GridView.builder(
-              padding: const EdgeInsets.symmetric(horizontal: xsSpacer),
-              itemCount: _filteredTasks.length,
-              itemBuilder: (BuildContext context, int index) {
-                final task = _filteredTasks[index];
-                final isSelected = _selectedTaskIds.contains(task.id);
-
-                return TaskCard(
-                  task: task,
-                  isSelected: isSelected,
-                  onSelect: (bool? isSelected) {
-                    setState(() {
-                      if (isSelected!) {
-                        _selectedTaskIds.add(task.id);
-                      } else {
-                        _selectedTaskIds.remove(task.id);
-                      }
-                    });
-                  },
-                  onEdit: () {
-                    _editTask(task);
-                  },
+          StreamBuilder<List<TaskModel>>(
+            stream: TaskService().getTasks(),
+            builder: (context, snapshot) {
+              if (snapshot.connectionState == ConnectionState.waiting) {
+                return SafeArea(
+                  child: Container(
+                    alignment: Alignment.center,
+                    margin: const EdgeInsets.only(top: 100),
+                    child: const CircularProgressIndicator(
+                      strokeWidth: 2,
+                    ),
+                  ),
                 );
-              },
-              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2,
-                childAspectRatio: 3 / 2,
-                crossAxisSpacing: xsSpacer,
-                mainAxisSpacing: xsSpacer,
-              ),
-            ),
+              }
+
+              if (_filteredTasks.isEmpty && _searchController.text.isNotEmpty ||
+                  _taskList.isEmpty) {
+                return SafeArea(
+                  child: Container(
+                    alignment: Alignment.center,
+                    margin: const EdgeInsets.only(top: 100),
+                    child: const Text(
+                      'Aucune tâche trouvée !',
+                      style: TextStyle(
+                          color: UIColors.blackColor, fontSize: FONT_SIZE_MD),
+                    ),
+                  ),
+                );
+              }
+
+              _taskList = snapshot.data!;
+              if (_searchController.text.isEmpty) {
+                _filteredTasks = _taskList;
+              }
+
+              return Expanded(
+                child: GridView.builder(
+                  padding: const EdgeInsets.symmetric(horizontal: xsSpacer),
+                  itemCount: _filteredTasks.length,
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 2,
+                    childAspectRatio: 2,
+                    crossAxisSpacing: xsSpacer,
+                    mainAxisSpacing: xsSpacer,
+                  ),
+                  itemBuilder: (BuildContext context, int index) {
+                    final task = _filteredTasks[index];
+                    final isSelected = _selectedTaskIds.contains(task.id);
+                    return TaskCard(
+                      task: task,
+                      isSelected: isSelected,
+                      onSelect: (bool? isSelected) {
+                        setState(() {
+                          if (isSelected!) {
+                            _selectedTaskIds.add(task.id!);
+                          } else {
+                            _selectedTaskIds.remove(task.id);
+                          }
+                        });
+                      },
+                      onEdit: () {
+                        _editTask(task);
+                      },
+                    );
+                  },
+                ),
+              );
+            },
           ),
         ],
       ),
       floatingActionButton: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          // Delete Button
           if (_selectedTaskIds.isNotEmpty)
             FloatingActionButton(
               heroTag: 'delete',
@@ -102,7 +142,6 @@ class _HomeState extends State {
               child: const Icon(Icons.delete, color: UIColors.whiteColor),
             ),
           const SizedBox(height: smSpacer),
-          // Add Task Button
           FloatingActionButton(
             heroTag: 'add',
             backgroundColor: UIColors.purpleColor,
@@ -128,11 +167,15 @@ class _HomeState extends State {
     super.dispose();
   }
 
+  @override
+  void initState() {
+    super.initState();
+    _getTasks();
+  }
+
   void _deleteSelectedTasks() {
+    TaskService().deleteTask(_selectedTaskIds.toList());
     setState(() {
-      taskList
-          .removeWhere((TaskModel task) => _selectedTaskIds.contains(task.id));
-      _filteredTasks = taskList;
       _selectedTaskIds.clear();
       _searchController.clear();
     });
@@ -150,10 +193,25 @@ class _HomeState extends State {
   }
 
   void _filterTasks(String query) {
-    setState(() {
-      _filteredTasks = taskList.where((task) {
-        return task.title.toLowerCase().contains(query.toLowerCase());
-      }).toList();
+    if (query.isNotEmpty) {
+      setState(() {
+        _filteredTasks = _taskList.where((task) {
+          return task.title.toLowerCase().contains(query.toLowerCase()) ||
+              task.description.toLowerCase().contains(query.toLowerCase());
+        }).toList();
+      });
+    } else {
+      setState(() {
+        _filteredTasks = _taskList;
+      });
+    }
+  }
+
+  _getTasks() {
+    TaskService().getTasks().listen((tasks) {
+      setState(() {
+        _taskList = tasks;
+      });
     });
   }
 }

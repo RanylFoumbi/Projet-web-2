@@ -29,13 +29,6 @@ class CustomAppBar extends StatelessWidget {
                     fontSize: FONT_SIZE_MD,
                     fontWeight: FontWeight.bold),
               ),
-              isHome
-                  ? const Icon(
-                      Icons.sort_by_alpha_rounded,
-                      color: UIColors.blackColor,
-                      size: 20,
-                    )
-                  : const SizedBox(),
             ],
           ),
           automaticallyImplyLeading: isHome ? false : true,

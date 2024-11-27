@@ -63,7 +63,7 @@ class _CustomDropdownState extends State<CustomDropdown>
                         Text(stateLabels[value]!),
                         if (value == selectedValue && widget.isEditable == true)
                           Icon(Icons.check_circle_sharp,
-                              color: stateColors[value], size: 30),
+                              color: stateTextColors[value], size: 30),
                       ],
                     ),
                   );

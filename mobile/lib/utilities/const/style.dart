@@ -22,19 +22,43 @@ final List<BoxShadow> customBoxShadow = [
   ),
 ];
 
+final statebgColors = {
+  'TODO': UIColors.todobgColor,
+  'DOING': UIColors.doingbgColor,
+  'DONE': UIColors.donebgColor,
+  'CANCELLED': UIColors.cancelledbgColor,
+};
+
+final stateBorderColors = {
+  'TODO': UIColors.todoBorderColor,
+  'DOING': UIColors.doingBorderColor,
+  'DONE': UIColors.doneBorderColor,
+  'CANCELLED': UIColors.cancelledBorderColor,
+};
+final Map<String, String> stateLabels = {
+  'TODO': 'À faire',
+  'DOING': 'En cours',
+  'DONE': 'Terminée',
+  'CANCELLED': 'Annulée',
+};
+
+final stateTextColors = {
+  'TODO': UIColors.todoTextColor,
+  'DOING': UIColors.doingTextColor,
+  'DONE': UIColors.doneTextColor,
+  'CANCELLED': UIColors.cancelledTextColor,
+};
+
+showsnackbar(BuildContext context, String message, {bool isError = false}) {
+  ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+    content: Text(message),
+    duration: const Duration(seconds: 2),
+    backgroundColor: isError ? UIColors.errorColor : UIColors.doneTextColor,
+  ));
+}
+
 extension StringExtension on String {
   String capitalize() {
     return "${this[0].toUpperCase()}${substring(1)}";
   }
 }
-
-final Map<String, String> stateLabels = {
-  'TODO': 'À faire',
-  'PROCESSING': 'En cours',
-  'DONE': 'Terminée',
-};
-final stateColors = {
-  'TODO': UIColors.todoColor,
-  'PROCESSING': UIColors.processingColor,
-  'DONE': UIColors.doneColor,
-};

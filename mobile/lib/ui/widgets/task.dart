@@ -51,8 +51,8 @@ class _TaskCardState extends State<TaskCard> with TickerProviderStateMixin {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Container(
-                    margin:
-                        const EdgeInsets.symmetric(horizontal: 12, vertical: 5),
+                    margin: const EdgeInsets.symmetric(
+                        horizontal: 12, vertical: smSpacer),
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -63,7 +63,7 @@ class _TaskCardState extends State<TaskCard> with TickerProviderStateMixin {
                           style: const TextStyle(
                             color: UIColors.blackColor,
                             fontWeight: FontWeight.bold,
-                            fontSize: FONT_SIZE_MD,
+                            fontSize: FONT_SIZE_SM,
                           ),
                         )
                       ],
@@ -88,9 +88,15 @@ class _TaskCardState extends State<TaskCard> with TickerProviderStateMixin {
               padding: const EdgeInsets.all(2),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(4),
-                color: stateColors[widget.task.state],
+                color: statebgColors[widget.task.state],
+                border: Border.all(
+                  color: stateBorderColors[widget.task.state]!,
+                ),
               ),
-              child: Text(stateLabels[widget.task.state]!),
+              child: Text(stateLabels[widget.task.state]!,
+                  style: TextStyle(
+                      fontSize: FONT_SIZE_XS,
+                      color: stateTextColors[widget.task.state]!)),
             ),
           ),
           Positioned(
