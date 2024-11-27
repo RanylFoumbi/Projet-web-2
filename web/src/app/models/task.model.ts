@@ -8,10 +8,10 @@ export type Task = {
 };
 
 export enum TaskState {
-    DOING = 'En cours',
-    DONE = 'Terminée',
-    CANCELLED = 'Annulée',
-    TODO = 'À faire',
+    DOING = 'DOING',
+    DONE = 'DONE',
+    CANCELLED = 'CANCELLED',
+    TODO = 'TODO',
 }
 
 export type SelectTask = {
