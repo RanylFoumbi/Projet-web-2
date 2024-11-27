@@ -1,3 +1,35 @@
-<mat-toolbar>
-    <a routerLink="/home" mat-button class="text-3xl">Todo</a>
-</mat-toolbar>
+<mat-toolbar class="flex justify-between items-center relative">
+    <a routerLink="/home" mat-button class="text-3xl">TODO</a>
+    
+    <div class="relative">
+      <img 
+        [src]="currentFlag" 
+        alt="Flag" 
+        class="w-8 h-8 cursor-pointer"
+        (click)="toggleLanguageDropdown()">
+      
+      <div 
+        *ngIf="isDropdownVisible" 
+        class="absolute right-0 mt-2 w-48 bg-white border rounded-md shadow-lg z-10">
+        <div 
+          class="flex items-center px-4 py-2 cursor-pointer hover:bg-gray-200"
+          (click)="changeLanguage('fr')">
+          <img 
+            src="assets/language-flags/france.png" 
+            alt="French flag" 
+            class="w-6 h-6 mr-2">
+          Français
+        </div>
+        <div 
+          class="flex items-center px-4 py-2 cursor-pointer hover:bg-gray-200"
+          (click)="changeLanguage('en')">
+          <img 
+            src="assets/language-flags/etats-unis.png" 
+            alt="US flag" 
+            class="w-6 h-6 mr-2">
+          English
+        </div>
+      </div>
+    </div>
+  </mat-toolbar>
+  
