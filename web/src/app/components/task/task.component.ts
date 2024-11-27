@@ -70,6 +70,12 @@ export class TaskComponent {
     return `${baseClasses} ${stateClasses[this.task.state] || ''}`;
   }
 
+  isDelayed(): boolean {
+    const currentDate = new Date();
+    currentDate.setHours(0, 0, 0, 0);
+    return new Date(this.task.endDate) < currentDate;
+  }
+
   @HostListener('document:click', ['$event'])
   closeDropdownOnOutsideClick(event: MouseEvent) {
     const dropdown = document.getElementById('state-dropdown-' + this.task.id);

@@ -27,6 +27,16 @@
         </div>
       </mat-expansion-panel-header>
       <p>{{ task.description }}</p>
+      <!-- <p class="text-end">À compléter avant le : {{ task.endDate | date: "MMM dd, yyyy" }}</p> -->
+    <span class="rounded-full flex items-end justify-end">
+        <mat-icon [ngClass]="
+          {
+            'text-gray-500': !isDelayed(),
+            'text-red-400': isDelayed()
+          }
+          ">calendar_today</mat-icon>
+        {{ task.endDate | date: "MMM dd, yyyy" }}
+      </span>
     </mat-expansion-panel>
   </div>
   
