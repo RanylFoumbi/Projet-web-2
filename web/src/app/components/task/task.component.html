@@ -27,6 +27,7 @@
         </div>
       </mat-expansion-panel-header>
       <p>{{ task.description }}</p>
+      <p class="text-end">À compléter avant le : {{ task.endDate | date: "MMM dd, yyyy" }}</p>
     </mat-expansion-panel>
   </div>
   
