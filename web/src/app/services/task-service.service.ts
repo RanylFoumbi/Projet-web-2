@@ -72,9 +72,7 @@ export class TaskServiceService {
       this.snackBar.open('Tache mise à jour avec succès', 'OK', { duration: 3000 });
     } else {
       const tasksCollectionRef = collection(this.firestore, 'tasks');
-      const docRef = await addDoc(tasksCollectionRef, task);
-      task.id = docRef.id;
-      await setDoc(docRef, task);
+      await addDoc(tasksCollectionRef, task);
       this.snackBar.open('Tache ajoutée avec succès', 'OK', { duration: 3000 });
     }
     this.retrieveTasks()
