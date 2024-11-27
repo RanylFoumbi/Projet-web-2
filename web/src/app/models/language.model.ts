@@ -10,6 +10,7 @@ export interface Translations {
           DOING: string;
           DONE: string;
           CANCELLED: string;
+          ALL: string;
         };
         actions: {
           edit: string;

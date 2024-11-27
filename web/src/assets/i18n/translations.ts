@@ -12,6 +12,7 @@ export const translations: Translations = {
         DOING: 'In progress',
         DONE: 'Completed',
         CANCELLED: 'Cancelled',
+        ALL: 'All',
       },
       actions: {
         edit: 'Edit task',
@@ -61,6 +62,7 @@ export const translations: Translations = {
         DOING: 'En cours',
         DONE: 'Terminée',
         CANCELLED: 'Annulée',
+        ALL: 'Toutes',
       },
       actions: {
         edit: 'Modifier la tâche',
@@ -110,6 +112,7 @@ export const translations: Translations = {
         DOING: 'En curso',
         DONE: 'Terminada',
         CANCELLED: 'Cancelada',
+        ALL: 'Todas',
       },
       actions: {
         edit: 'Editar tarea',
@@ -159,6 +162,7 @@ export const translations: Translations = {
         DOING: 'In Bearbeitung',
         DONE: 'Abgeschlossen',
         CANCELLED: 'Abgebrochen',
+        ALL: 'Alle',
       },
       actions: {
         edit: 'Aufgabe bearbeiten',
@@ -208,6 +212,7 @@ export const translations: Translations = {
         DOING: 'Em andamento',
         DONE: 'Concluída',
         CANCELLED: 'Cancelada',
+        ALL: 'Todas',
       },
       actions: {
         edit: 'Editar tarefa',
@@ -257,6 +262,7 @@ export const translations: Translations = {
         DOING: 'В процессе',
         DONE: 'Завершено',
         CANCELLED: 'Отменено',
+        ALL: 'Все',
       },
       actions: {
         edit: 'Редактировать задачу',
@@ -306,6 +312,7 @@ export const translations: Translations = {
         DOING: '進行中',
         DONE: '完了',
         CANCELLED: 'キャンセル',
+        ALL: 'すべて',
       },
       actions: {
         edit: 'タスクを編集',
@@ -355,6 +362,7 @@ export const translations: Translations = {
         DOING: '진행 중',
         DONE: '완료됨',
         CANCELLED: '취소됨',
+        ALL: '모두',
       },
       actions: {
         edit: '작업 수정',
