@@ -11,13 +11,13 @@ export class TaskServiceService {
 
   task = new BehaviorSubject<Task[]>([])
   selectedTasks = new BehaviorSubject<Task[]>([])
-
+  cachedTask: Task[] = [];
   taskListSubscription?: Subscription;
 
   constructor(
     private readonly snackBar: MatSnackBar,
     private readonly firestore: Firestore,
-    private languageService: LanguageService 
+    private languageService: LanguageService
   ) {
     this.retrieveTasks();
   }
@@ -34,8 +34,9 @@ export class TaskServiceService {
 
   searchTask(term: string | undefined) {
     if (term) {
-      const filteredTasks = this.task.value.filter((task) => {
-        return task.title.toLowerCase().includes(term.toLowerCase());
+      const filteredTasks = this.cachedTask.filter((task) => {
+        return task.title.toLowerCase().includes(term.toLowerCase()) ||
+          task.description.toLowerCase().includes(term.toLowerCase());
       });
       this.task.next(filteredTasks);
     } else {
@@ -60,7 +61,7 @@ export class TaskServiceService {
           endDate: task['endDate'].toDate(),
         }
       });
-
+      this.cachedTask = mappedTasks;
       this.task.next(mappedTasks);
     });
   }

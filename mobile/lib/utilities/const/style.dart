@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:todoapp/utilities/const/colors.dart';
 
 const double appBarHeight = 70;
 
@@ -20,6 +21,41 @@ final List<BoxShadow> customBoxShadow = [
     blurRadius: 8,
   ),
 ];
+
+final statebgColors = {
+  'TODO': UIColors.todobgColor,
+  'DOING': UIColors.doingbgColor,
+  'DONE': UIColors.donebgColor,
+  'CANCELLED': UIColors.cancelledbgColor,
+};
+
+final stateBorderColors = {
+  'TODO': UIColors.todoBorderColor,
+  'DOING': UIColors.doingBorderColor,
+  'DONE': UIColors.doneBorderColor,
+  'CANCELLED': UIColors.cancelledBorderColor,
+};
+final Map<String, String> stateLabels = {
+  'TODO': 'À faire',
+  'DOING': 'En cours',
+  'DONE': 'Terminée',
+  'CANCELLED': 'Annulée',
+};
+
+final stateTextColors = {
+  'TODO': UIColors.todoTextColor,
+  'DOING': UIColors.doingTextColor,
+  'DONE': UIColors.doneTextColor,
+  'CANCELLED': UIColors.cancelledTextColor,
+};
+
+showsnackbar(BuildContext context, String message, {bool isError = false}) {
+  ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+    content: Text(message),
+    duration: const Duration(seconds: 2),
+    backgroundColor: isError ? UIColors.errorColor : UIColors.doneTextColor,
+  ));
+}
 
 extension StringExtension on String {
   String capitalize() {

@@ -30,50 +30,55 @@ class CustomDateTimePicker extends StatefulWidget {
   _CustomDateTimePickerState createState() => _CustomDateTimePickerState();
 }
 
-class _CustomDateTimePickerState extends State<CustomDateTimePicker> {
+class _CustomDateTimePickerState extends State<CustomDateTimePicker>
+    with TickerProviderStateMixin {
   late DateTime _selectedDateTime;
+  late AnimationController _controller;
+  late Animation<double> _animation;
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        color: UIColors.backgroundColor,
-        border: Border.all(
-          color: UIColors.grayText,
-          width: 0.1,
-        ),
-        borderRadius: btnBorderRaduis,
-      ),
-      child: TextFormField(
-        controller: widget.controller,
-        readOnly: true,
-        onTap: _showDateTimePicker,
-        decoration: InputDecoration(
-          contentPadding:
-              const EdgeInsets.symmetric(horizontal: 16, vertical: 9),
-          fillColor: UIColors.backgroundColor,
-          hintText: widget.placeholder,
-          hintStyle: const TextStyle(
-            fontSize: FONT_SIZE_SM,
-            color: UIColors.placeholderColor,
-            fontWeight: FontWeight.w100,
-          ),
-          suffixIcon: Icon(
-            widget.isDateOnly ? Icons.calendar_today : Icons.calendar_month,
+    return ScaleTransition(
+      scale: _animation,
+      child: Container(
+        decoration: BoxDecoration(
+          color: UIColors.backgroundColor,
+          border: Border.all(
             color: UIColors.grayText,
-            size: 20,
+            width: 0.1,
           ),
-          focusedBorder: const OutlineInputBorder(
-            borderSide: BorderSide(color: UIColors.grayText, width: 1),
-            borderRadius: btnBorderRaduis,
-          ),
-          enabledBorder: const OutlineInputBorder(
-            borderSide: BorderSide(color: UIColors.grayText, width: 1),
-            borderRadius: btnBorderRaduis,
-          ),
-          border: const OutlineInputBorder(
-            borderSide: BorderSide(color: UIColors.grayText, width: 1),
-            borderRadius: btnBorderRaduis,
+          borderRadius: btnBorderRaduis,
+        ),
+        child: TextFormField(
+          controller: widget.controller,
+          readOnly: true,
+          onTap: _showDateTimePicker,
+          decoration: InputDecoration(
+            contentPadding: btnPadding,
+            fillColor: UIColors.backgroundColor,
+            hintText: widget.placeholder,
+            hintStyle: const TextStyle(
+              fontSize: FONT_SIZE_SM,
+              color: UIColors.placeholderColor,
+              fontWeight: FontWeight.w100,
+            ),
+            suffixIcon: Icon(
+              widget.isDateOnly ? Icons.calendar_today : Icons.calendar_month,
+              color: UIColors.grayText,
+              size: 20,
+            ),
+            focusedBorder: const OutlineInputBorder(
+              borderSide: BorderSide(color: UIColors.grayText, width: 1),
+              borderRadius: btnBorderRaduis,
+            ),
+            enabledBorder: const OutlineInputBorder(
+              borderSide: BorderSide(color: UIColors.grayText, width: 1),
+              borderRadius: btnBorderRaduis,
+            ),
+            border: const OutlineInputBorder(
+              borderSide: BorderSide(color: UIColors.grayText, width: 1),
+              borderRadius: btnBorderRaduis,
+            ),
           ),
         ),
       ),
@@ -83,6 +88,17 @@ class _CustomDateTimePickerState extends State<CustomDateTimePicker> {
   @override
   void initState() {
     super.initState();
+    _controller = AnimationController(
+      duration: const Duration(seconds: 2),
+      vsync: this,
+    );
+
+    _animation = CurvedAnimation(
+      parent: _controller,
+      curve: Curves.linearToEaseOut,
+    );
+
+    _controller.forward();
     _selectedDateTime = widget.initialDate ?? DateTime.now();
     _updateControllerText();
   }
@@ -137,13 +153,8 @@ class _CustomDateTimePickerState extends State<CustomDateTimePicker> {
 
       if (pickedTime != null) {
         setState(() {
-          _selectedDateTime = DateTime(
-            pickedDate.year,
-            pickedDate.month,
-            pickedDate.day,
-            pickedTime.hour,
-            pickedTime.minute,
-          );
+          _selectedDateTime = DateTime(pickedDate.year, pickedDate.month,
+              pickedDate.day, pickedTime.hour, pickedTime.minute);
           _updateControllerText();
           widget.onDateTimeChanged?.call(_selectedDateTime);
         });
