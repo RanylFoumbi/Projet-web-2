@@ -9,7 +9,7 @@
         </span>
       </mat-panel-title>
       <div class="flex items-center relative">
-        <span [ngClass]="getStatusClass()" (click)="toggleStatusDropdown($event)" [matMenuTriggerFor]="menu">
+        <span [ngClass]="getStatusClass()" (click)="$event.stopPropagation()" [matMenuTriggerFor]="menu">
           {{ getStateDisplay(task.state) }}
         </span>
         <mat-menu #menu="matMenu">
