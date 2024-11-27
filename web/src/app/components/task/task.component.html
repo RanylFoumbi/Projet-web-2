@@ -17,7 +17,6 @@
                 (click)="toggleStatusDropdown($event)">
                 {{ getStateDisplay(task.state) }}
             </span>
-  
           <button mat-icon-button (click)="updateTask($event)">
             <mat-icon class="text-gray-500">edit</mat-icon>
           </button>
@@ -46,7 +45,6 @@
     <div *ngFor="let state of TaskState | keyvalue" class="px-4 py-2 cursor-pointer hover:bg-gray-200"
       (click)="changeState(state.key)">
       {{ stateDisplayMap[state.value] }}
-      
     </div>
   </div>
   

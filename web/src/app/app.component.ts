@@ -40,6 +40,10 @@ export class AppComponent implements OnInit {
     this.taskService.searchTask(term);
   }
 
+  handleChangeState(state: string) {
+    this.taskService.filterByState(state);
+  }
+
   handleDelete() {
     const dialogRef = this.dialog.open(ConfirmDialogComponent);
 

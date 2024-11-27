@@ -48,6 +48,7 @@ export class TaskComponent implements OnInit {
     this.updateState.emit(this.task);
     this.isDropdownVisible = false;
   }
+
   get stateDisplayMap(): { [key in TaskState]: string } {
     return {
       [TaskState.DONE]: this.languageService.translate('task.state.DONE'),
@@ -69,7 +70,7 @@ export class TaskComponent implements OnInit {
       [TaskState.TODO]: 'border-blue-300 bg-blue-100 text-blue-600',
       [TaskState.CANCELLED]: 'border-red-300 bg-red-100 text-red-600',
     };
-
+    console.log(stateClasses[this.task.state]);
     return `${baseClasses} ${stateClasses[this.task.state] || ''}`;
   }
 

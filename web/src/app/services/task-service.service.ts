@@ -32,6 +32,13 @@ export class TaskServiceService {
     }
   }
 
+  filterByState(state: string) {
+    const filteredTasks = this.cachedTask.filter((task) => {
+      return task.state === state;
+    });
+    this.task.next(filteredTasks);
+  }
+
   searchTask(term: string | undefined) {
     if (term) {
       const filteredTasks = this.cachedTask.filter((task) => {
@@ -40,7 +47,7 @@ export class TaskServiceService {
       });
       this.task.next(filteredTasks);
     } else {
-      
+
     }
   }
 
