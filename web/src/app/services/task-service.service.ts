@@ -68,11 +68,25 @@ export class TaskServiceService {
   async addTask(task: Task): Promise<void> {
     if (task.id) {
       const taskDocRef = doc(this.firestore, `tasks/${task.id}`);
-      await setDoc(taskDocRef, task);
+      await setDoc(taskDocRef, {
+        title: task.title,
+        description: task.description,
+        state: task.state,
+        startDate: task.startDate,
+        endDate: task.endDate,
+        updatedAt: new Date()
+      });
       this.snackBar.open('Tache mise à jour avec succès', 'OK', { duration: 3000 });
     } else {
       const tasksCollectionRef = collection(this.firestore, 'tasks');
-      await addDoc(tasksCollectionRef, task);
+      await addDoc(tasksCollectionRef, {
+        title: task.title,
+        description: task.description,
+        state: task.state,
+        startDate: task.startDate,
+        endDate: task,
+        updatedAt: new Date()
+      });
       this.snackBar.open('Tache ajoutée avec succès', 'OK', { duration: 3000 });
     }
     this.retrieveTasks()
