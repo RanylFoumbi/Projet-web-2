@@ -5,13 +5,18 @@ import { translations } from 'src/assets/i18n/translations';
   providedIn: 'root',
 })
 export class LanguageService {
-  private currentLanguage: keyof typeof translations = 'fr';
+  private currentLanguage: string = 'fr';
 
-  setLanguage(language: keyof typeof translations): void {
+  setLanguage(language: string): void {
+    localStorage.setItem('language', language);
     this.currentLanguage = language;
   }
 
-  getLanguage(): keyof typeof translations {
+  getLanguage(): string {
+    const storedLanguage = localStorage.getItem('language');
+    if (storedLanguage) {
+      this.currentLanguage = storedLanguage;
+    }
     return this.currentLanguage;
   }
 
