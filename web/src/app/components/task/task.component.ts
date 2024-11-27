@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output, HostListener } from '@angular/core';
+import { Component, EventEmitter, Input, Output, HostListener, OnInit } from '@angular/core';
 import { MatCheckboxChange } from '@angular/material/checkbox';
 import { SelectTask, Task, TaskState } from 'src/app/models/task.model';
 import { LanguageService } from 'src/app/services/language.service';
@@ -7,7 +7,7 @@ import { LanguageService } from 'src/app/services/language.service';
   selector: 'app-task',
   templateUrl: './task.component.html',
 })
-export class TaskComponent {
+export class TaskComponent implements OnInit {
   TaskState = TaskState;
   @Input() task!: Task;
   @Input() selected = false;
@@ -16,6 +16,8 @@ export class TaskComponent {
   @Output() updateState = new EventEmitter<Task>();
   @Output() select = new EventEmitter<SelectTask>();
   constructor(private languageService: LanguageService) {}
+  ngOnInit(): void {
+  }
 
   isDropdownVisible = false;
   dropdownPosition: { left: number; top: number } | null = null;
@@ -46,13 +48,14 @@ export class TaskComponent {
     this.updateState.emit(this.task);
     this.isDropdownVisible = false;
   }
-
-  stateDisplayMap: { [key in TaskState]: string } = {
-    [TaskState.DONE]: 'Terminée',
-    [TaskState.TODO]: 'À faire',
-    [TaskState.DOING]: 'En cours',
-    [TaskState.CANCELLED]: 'Annulée',
-  };
+  get stateDisplayMap(): { [key in TaskState]: string } {
+    return {
+      [TaskState.DONE]: this.languageService.translate('task.state.DONE'),
+      [TaskState.TODO]: this.languageService.translate('task.state.TODO'),
+      [TaskState.DOING]: this.languageService.translate('task.state.DOING'),
+      [TaskState.CANCELLED]: this.languageService.translate('task.state.CANCELLED'),
+    };
+  }
 
   getStateDisplay(state: TaskState): string {
     return this.languageService.translate(`task.state.${state}`);
