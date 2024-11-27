@@ -48,7 +48,7 @@ export class TaskServiceService {
       this.taskListSubscription.unsubscribe();
     }
     const tasksCollection = collection(this.firestore, 'tasks');
-    collectionData(tasksCollection).subscribe((tasks) => {
+    collectionData(tasksCollection, { idField: 'id' }).subscribe((tasks) => {
       const mappedTasks = tasks.map<Task>((task) => {
         return {
           id: task['id'],
