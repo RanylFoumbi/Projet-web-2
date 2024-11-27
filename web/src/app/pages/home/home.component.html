@@ -1,7 +1,19 @@
-<div class="tasks-list">
-    <app-task 
-      *ngFor="let task of tasks" 
-      [task]="task" 
-      (remove)="handleRemoveTask($event)"
-    ></app-task>
-</div>
+<div class="tasks-list overflow-y-auto mt-44">
+    <ng-container *ngIf="tasks && tasks.length > 0; else noTasks">
+      <app-task 
+        *ngFor="let task of tasks" 
+        [task]="task" 
+        (remove)="handleRemoveTask($event)"
+        (update)="handleUpdateTask($event)"
+        (updateState)="handleUpdateTaskState($event)"
+        (select)="handleSelectTask($event)">
+      </app-task>
+    </ng-container>
+  </div>
+<ng-template #noTasks>
+    <div class="flex items-center justify-center pt-20">
+        <p class="text-gray-500 text-3xl font-bold text-center">
+          {{ noTaskMessage }}
+        </p>
+      </div>
+</ng-template>

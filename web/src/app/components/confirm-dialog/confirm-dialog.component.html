@@ -1,8 +1,8 @@
-<h2 mat-dialog-title>Confirmation</h2>
+<h2 mat-dialog-title>{{ getTranslation('task.actions.confirm') }}</h2>
 <mat-dialog-content>
-  <p>Êtes-vous sûr de vouloir supprimer cette tâche ?</p>
+  <p>{{ getTranslation('task.actions.dialog') }}</p>
 </mat-dialog-content>
 <mat-dialog-actions align="end">
-  <button mat-button mat-dialog-close="cancel">Annuler</button>
-  <button mat-raised-button color="warn" [mat-dialog-close]="'confirm'">Confirmer</button>
+  <button mat-button mat-dialog-close>{{ getTranslation('task.actions.cancel') }}</button>
+  <button mat-raised-button color="primary" [mat-dialog-close]="'confirm'">{{ getTranslation('task.actions.confirm') }}</button>
 </mat-dialog-actions>

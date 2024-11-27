@@ -1,27 +1,91 @@
-# Styles des Statuts
 
-## En cours
-- **Bordure**: `#FDE047`
-- **Fond**: `#FEF9C3`
-- **Texte**: `#CA8A04`
+# 📝 To-Do Application
+
+Une application multi-plateforme pour la gestion des tâches, développée avec **Angular** pour le front-end web et **Flutter** pour le mobile.
 
 ---
 
-## Annulée
-- **Bordure**: `#FCA5A5`
-- **Fond**: `#FEE2E2`
-- **Texte**: `#DC2626`
+## 🌟 Fonctionnalités
+
+- Ajouter, modifier et supprimer des tâches.
+- Rechercher des tâches par titre ou description.
+- Statuts personnalisés avec des codes couleur :
+  - **TODO** (À faire)
+  - **DOING** (En cours)
+  - **DONE** (Terminée)
+  - **CANCELLED** (Annulée)
+- Interface responsive pour le web.
+- Application mobile Flutter offrant une expérience utilisateur native.
 
 ---
 
-## A faire
-- **Bordure**: `#93C5FD`
-- **Fond**: `#DBEAFE`
-- **Texte**: `#2563EB`
+## 📂 Structure du projet
 
----
+```plaintext
+root/
+├── web/       # Version Angular
+│   ├── src/
+│   │   ├── app/        # Composants Angular
+│   │   └── assets/     # Fichiers statiques
+│   └── package.json    # Dépendances Angular
+├── mobile/       # Version Flutter
+│   ├── lib/
+│   │   ├── screens/    # Écrans principaux
+│   │   ├── widgets/    # Widgets réutilisables
+│   └── pubspec.yaml    # Dépendances Flutter
+└── README.md           # Ce fichier
+```
+## 🚀 Installation et Lancement
+### Angular (Web)
+Cloner le projet :
+```bash
+git clone https://github.com/RanylFoumbi/Projet-web-2.git
+cd web
+```
+Installer les dépendances :
+```bash
+npm install
+```
+Lancer le projet :
+```bash
+ng serve
+```
+Le projet sera accessible à http://localhost:4200.
 
-## Terminée
-- **Bordure**: `#86EFAC`
-- **Fond**: `#DCFCE7`
-- **Texte**: `#16A34A`
+### Flutter (Mobile)
+Cloner le projet :
+
+```bash
+git clone https://github.com/RanylFoumbi/Projet-web-2.git
+cd mobile
+```
+Installer les dépendances :
+```bash
+flutter pub get
+```
+Exécuter l'application :
+```bash
+flutter run
+```
+L'application s'exécutera sur un simulateur ou un appareil connecté.
+
+
+
+## 🎨 Charte graphique
+
+Voici les styles utilisés pour les statuts dans l'application Angular :
+
+| Statut        | Bordure  | Fond     | Texte    |
+|---------------|----------|----------|----------|
+| **TODO**   | `#FDE047` | `#FEF9C3` | `#CA8A04` |
+| **DONE** | `#86EFAC` | `#DCFCE7` | `#16A34A` |
+| **DOING** | `#93C5FD` | `#DBEAFE` | `#2563EB` |
+| **CANCELLED**  | `#FCA5A5` | `#FEE2E2` | `#DC2626` |
+
+## 🛠️ Technologies Utilisées
+**Angular**: Framework front-end pour le web.
+**Flutter**: SDK mobile pour créer des applications natives.
+**Firebase**: Backend pour la gestion des données.
+
+## 📜 Licence
+Ce projet est sous licence MIT.

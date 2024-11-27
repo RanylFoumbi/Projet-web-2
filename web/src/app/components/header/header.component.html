@@ -1,3 +1,89 @@
-<mat-toolbar>
-    <a routerLink="/home" mat-button class="text-3xl">Todo</a>
-</mat-toolbar>
+<mat-toolbar class="flex justify-between items-center relative" style="background-color: #89bbf9; color: white;">
+    <a routerLink="/home" mat-button class="text-3xl">TODO</a>
+    
+    <div class="relative">
+      <img 
+        [src]="currentFlag" 
+        alt="Flag" 
+        class="w-8 h-8 cursor-pointer"
+        (click)="toggleLanguageDropdown()">
+      
+      <div 
+        *ngIf="isDropdownVisible" 
+        class="absolute right-0 mt-2 w-48 bg-white border rounded-md shadow-lg z-10" style="color: rgb(45, 45, 45); font-size: small;">
+        <div 
+          class="flex items-center px-4 py-2 cursor-pointer hover:bg-gray-200"
+          (click)="changeLanguage('fr')">
+          <img 
+            src="assets/language-flags/france.png" 
+            alt="French flag" 
+            class="w-6 h-6 mr-2">
+          Français
+        </div>
+        <div 
+          class="flex items-center px-4 py-2 cursor-pointer hover:bg-gray-200"
+          (click)="changeLanguage('en')">
+          <img 
+            src="assets/language-flags/etats-unis.png" 
+            alt="US flag" 
+            class="w-6 h-6 mr-2">
+          English
+        </div>
+        <div 
+          class="flex items-center px-4 py-2 cursor-pointer hover:bg-gray-200"
+          (click)="changeLanguage('es')">
+          <img 
+            src="assets/language-flags/espagne.png" 
+            alt="Espagnol flag" 
+            class="w-6 h-6 mr-2">
+          Español
+        </div>
+        <div 
+          class="flex items-center px-4 py-2 cursor-pointer hover:bg-gray-200"
+          (click)="changeLanguage('de')">
+          <img 
+            src="assets/language-flags/allemagne.png" 
+            alt="German flag" 
+            class="w-6 h-6 mr-2">
+          Deutsch
+        </div>
+        <div 
+          class="flex items-center px-4 py-2 cursor-pointer hover:bg-gray-200"
+          (click)="changeLanguage('de')">
+          <img 
+            src="assets/language-flags/portugal.png" 
+            alt="Portugese flag" 
+            class="w-6 h-6 mr-2">
+            Português
+        </div>
+        <div 
+          class="flex items-center px-4 py-2 cursor-pointer hover:bg-gray-200"
+          (click)="changeLanguage('ru')">
+          <img 
+            src="assets/language-flags/russie.png" 
+            alt="Russian flag" 
+            class="w-6 h-6 mr-2">
+            Русский
+        </div>
+        <div 
+          class="flex items-center px-4 py-2 cursor-pointer hover:bg-gray-200"
+          (click)="changeLanguage('ja')">
+          <img 
+            src="assets/language-flags/japon.png" 
+            alt="Japanese flag" 
+            class="w-6 h-6 mr-2">
+            日本語
+        </div>
+        <div 
+          class="flex items-center px-4 py-2 cursor-pointer hover:bg-gray-200"
+          (click)="changeLanguage('kr')">
+          <img 
+            src="assets/language-flags/coree-du-sud.png" 
+            alt="Korean flag" 
+            class="w-6 h-6 mr-2">
+            한국어
+        </div>
+      </div>
+    </div>
+  </mat-toolbar>
+  
