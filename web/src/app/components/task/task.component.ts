@@ -71,6 +71,18 @@ export class TaskComponent {
     [TaskState.CANCELLED]: 'Annulée',
   };
 
+  getStatusClass(): string {
+    const baseClasses = 'rounded-md mr-2 border px-2 py-1 cursor-pointer select-none';
+    const stateClasses: { [key in TaskState]: string } = {
+      [TaskState.DONE]: 'border-green-300 bg-green-100 text-green-600',
+      [TaskState.DOING]: 'border-yellow-300 bg-yellow-100 text-yellow-600',
+      [TaskState.TODO]: 'border-blue-300 bg-blue-100 text-blue-600',
+      [TaskState.CANCELLED]: 'border-red-300 bg-red-100 text-red-600',
+    };
+
+    return `${baseClasses} ${stateClasses[this.task.state] || ''}`;
+  }
+  
   @HostListener('document:click', ['$event'])
   closeDropdownOnOutsideClick(event: MouseEvent) {
     const dropdown = document.getElementById('state-dropdown-' + this.task.id);

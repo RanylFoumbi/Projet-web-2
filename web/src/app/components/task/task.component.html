@@ -13,22 +13,10 @@
         </mat-panel-title>
         <div class="flex items-center relative">
             <span
-            class="rounded-md mr-2 border px-2 py-1 cursor-pointer select-none"
-            [class.border-green-300]="task.state === TaskState.DONE"
-            [class.bg-green-100]="task.state === TaskState.DONE"
-            [class.text-green-600]="task.state === TaskState.DONE"
-            [class.border-yellow-300]="task.state === TaskState.DOING"
-            [class.bg-yellow-100]="task.state === TaskState.DOING"
-            [class.text-yellow-600]="task.state === TaskState.DOING"
-            [class.border-blue-300]="task.state === TaskState.TODO"
-            [class.bg-blue-100]="task.state === TaskState.TODO"
-            [class.text-blue-600]="task.state === TaskState.TODO"
-            [class.border-red-300]="task.state === TaskState.CANCELLED"
-            [class.bg-red-100]="task.state === TaskState.CANCELLED"
-            [class.text-red-600]="task.state === TaskState.CANCELLED"
-            (click)="toggleStatusDropdown($event)">
-            {{ stateDisplayMap[task.state] }}
-        </span>
+                [ngClass]="getStatusClass()"
+                (click)="toggleStatusDropdown($event)">
+                {{ stateDisplayMap[task.state] }}
+            </span>
   
           <button mat-icon-button (click)="updateTask($event)">
             <mat-icon class="text-gray-500">edit</mat-icon>
