@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, Output, HostListener } from '@angular/core';
 import { MatCheckboxChange } from '@angular/material/checkbox';
 import { SelectTask, Task, TaskState } from 'src/app/models/task.model';
+import { LanguageService } from 'src/app/services/language.service';
 
 @Component({
   selector: 'app-task',
@@ -14,6 +15,7 @@ export class TaskComponent {
   @Output() update = new EventEmitter<Task>();
   @Output() updateState = new EventEmitter<Task>();
   @Output() select = new EventEmitter<SelectTask>();
+  constructor(private languageService: LanguageService) {}
 
   isDropdownVisible = false;
   dropdownPosition: { left: number; top: number } | null = null;
@@ -51,6 +53,10 @@ export class TaskComponent {
     [TaskState.DOING]: 'En cours',
     [TaskState.CANCELLED]: 'Annulée',
   };
+
+  getStateDisplay(state: TaskState): string {
+    return this.languageService.translate(`task.state.${state}`);
+  }
 
   getStatusClass(): string {
     const baseClasses = 'rounded-md mr-2 border px-2 py-1 cursor-pointer select-none';
