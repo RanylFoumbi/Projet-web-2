@@ -37,6 +37,12 @@ export interface Translations {
       language: {
         french: string;
         english: string;
+        spanish: string;
+        german: string;
+        portuguese: string;
+        korean: string;
+        russian: string;
+        japanese: string;
       };
       search: {
         placeholder: string;

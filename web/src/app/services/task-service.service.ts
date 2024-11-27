@@ -39,7 +39,7 @@ export class TaskServiceService {
       });
       this.task.next(filteredTasks);
     } else {
-      this.retrieveTasks();
+      
     }
   }
 
