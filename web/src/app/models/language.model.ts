@@ -17,6 +17,21 @@ export interface Translations {
           confirm: string;
           dialog: string;
           cancel: string;
+          create: string
+          save: string;
+        };
+        confirm: {
+            update: string;
+            delete: string;
+            deletes: string;
+            add: string;
+        };
+        form: {
+            title: string;
+            description: string;
+            state: string;
+            startDate: string;
+            endDate: string;
         };
       };
       language: {

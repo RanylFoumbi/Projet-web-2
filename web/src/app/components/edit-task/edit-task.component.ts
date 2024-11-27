@@ -2,6 +2,7 @@ import { Component, EventEmitter, Inject, Input, OnInit, Output } from '@angular
 import { AbstractControl, FormBuilder, FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Task, TaskState } from 'src/app/models/task.model';
+import { LanguageService } from 'src/app/services/language.service'; 
 
 @Component({
   selector: 'app-edit-task',
@@ -14,6 +15,7 @@ export class EditTaskComponent {
 
   constructor(
     private readonly fb: FormBuilder,
+    private languageService: LanguageService,
     @Inject(MAT_DIALOG_DATA) public data: { task: Task }
   ) {
     this.form = this.fb.group({
@@ -37,5 +39,12 @@ export class EditTaskComponent {
       }
       return null;
     };
+  }
+
+  getTranslation(key: string): string {
+    return this.languageService.translate(key);
+  }
+  getStateDisplay(state: TaskState): string {
+    return this.languageService.translate(`task.state.${state}`);
   }
 }

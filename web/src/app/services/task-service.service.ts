@@ -3,7 +3,7 @@ import { Firestore, collection, collectionData, addDoc, doc, deleteDoc, setDoc }
 import { SelectTask, Task, TaskState } from '../models/task.model';
 import { BehaviorSubject, Subscription } from 'rxjs';
 import { MatSnackBar } from '@angular/material/snack-bar';
-
+import { LanguageService } from './language.service';
 @Injectable({
   providedIn: 'root'
 })
@@ -16,7 +16,8 @@ export class TaskServiceService {
 
   constructor(
     private readonly snackBar: MatSnackBar,
-    private readonly firestore: Firestore
+    private readonly firestore: Firestore,
+    private languageService: LanguageService 
   ) {
     this.retrieveTasks();
   }
@@ -76,7 +77,7 @@ export class TaskServiceService {
         endDate: task.endDate,
         updatedAt: new Date()
       });
-      this.snackBar.open('Tache mise à jour avec succès', 'OK', { duration: 3000 });
+      this.snackBar.open(this.languageService.translate('task.confirm.update'), 'OK', { duration: 3000 });
     } else {
       const tasksCollectionRef = collection(this.firestore, 'tasks');
       await addDoc(tasksCollectionRef, {
@@ -84,10 +85,10 @@ export class TaskServiceService {
         description: task.description,
         state: task.state,
         startDate: task.startDate,
-        endDate: task,
+        endDate: task.endDate,
         updatedAt: new Date()
       });
-      this.snackBar.open('Tache ajoutée avec succès', 'OK', { duration: 3000 });
+      this.snackBar.open(this.languageService.translate('task.confirm.add'), 'OK', { duration: 3000 });
     }
     this.retrieveTasks()
   }
@@ -97,6 +98,7 @@ export class TaskServiceService {
     const taskRef = doc(this.firestore, 'tasks', taskId);
     await deleteDoc(taskRef);
     this.retrieveTasks();
+    this.snackBar.open(this.languageService.translate('task.confirm.delete'), 'OK', { duration: 3000 });
   }
 
   // Delete all tasks
@@ -107,6 +109,6 @@ export class TaskServiceService {
     });
     this.retrieveTasks();
     this.selectedTasks.next([]);
-    this.snackBar.open('Taches supprimées avec succès', 'OK', { duration: 3000 });
+    this.snackBar.open(this.languageService.translate('task.confirm.deletes'), 'OK', { duration: 3000 });
   }
 }
