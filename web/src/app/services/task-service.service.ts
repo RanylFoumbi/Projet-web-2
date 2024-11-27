@@ -11,6 +11,7 @@ export class TaskServiceService {
 
   task = new BehaviorSubject<Task[]>([])
   selectedTasks = new BehaviorSubject<Task[]>([])
+  currentState = 'ALL';
   cachedTask: Task[] = [];
   taskListSubscription?: Subscription;
 
@@ -41,17 +42,23 @@ export class TaskServiceService {
       });
       this.task.next(filteredTasks);
     }
+    this.currentState = state;
   }
 
   searchTask(term: string | undefined) {
     if (term) {
       const filteredTasks = this.cachedTask.filter((task) => {
-        return task.title.toLowerCase().includes(term.toLowerCase()) ||
-          task.description.toLowerCase().includes(term.toLowerCase());
+        return (task.title.toLowerCase().includes(term.toLowerCase()) ||
+          task.description.toLowerCase().includes(term.toLowerCase())) &&
+          (this.currentState === 'ALL' || task.state === this.currentState);
       });
       this.task.next(filteredTasks);
     } else {
-
+      this.task.next(
+        this.cachedTask.filter((task) => {
+          return this.currentState === 'ALL' || task.state === this.currentState;
+        })
+      );
     }
   }
 
