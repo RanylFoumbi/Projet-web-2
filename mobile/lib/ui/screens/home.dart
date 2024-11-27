@@ -100,10 +100,10 @@ class _HomeState extends State<Home> {
                   padding: const EdgeInsets.symmetric(horizontal: xsSpacer),
                   itemCount: _filteredTasks.length,
                   gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 2,
-                    childAspectRatio: 2,
-                    crossAxisSpacing: xsSpacer,
-                    mainAxisSpacing: xsSpacer,
+                    crossAxisCount: 1,
+                    childAspectRatio: 2 * 2.2,
+                    crossAxisSpacing: xxsSpacer,
+                    mainAxisSpacing: xxsSpacer,
                   ),
                   itemBuilder: (BuildContext context, int index) {
                     final task = _filteredTasks[index];

@@ -1,1 +1,0 @@
- /Users/ranolf/Desktop/Projet-web-2/mobile/.dart_tool/flutter_build/7346c33c84204d93b9547b3cf5a671a5/native_assets.yaml: 
