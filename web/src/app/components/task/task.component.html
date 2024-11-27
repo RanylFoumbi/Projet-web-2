@@ -9,13 +9,12 @@
         </span>
       </mat-panel-title>
       <div class="flex items-center relative">
-        <span [ngClass]="getStatusClass()" (click)="toggleStatusDropdown($event)" 
-        [matMenuTriggerFor]="menu">
+        <span [ngClass]="getStatusClass()" (click)="toggleStatusDropdown($event)" [matMenuTriggerFor]="menu">
           {{ getStateDisplay(task.state) }}
         </span>
         <mat-menu #menu="matMenu">
           <div *ngFor="let state of TaskState | keyvalue" class="px-4 py-2 cursor-pointer hover:bg-gray-200"
-          (click)="changeState(state.key)">
+            (click)="changeState(state.key)">
             {{ stateDisplayMap[state.value] }}
           </div>
         </mat-menu>
@@ -29,14 +28,16 @@
     </mat-expansion-panel-header>
     <p>{{ task.description }}</p>
     <!-- <p class="text-end">À compléter avant le : {{ task.endDate | date: "MMM dd, yyyy" }}</p> -->
-    <span class="rounded-full flex items-end justify-end">
+    <p class="rounded-full flex gap-2 items-end justify-end">
       <mat-icon [ngClass]="
           {
-            'text-gray-500': !isDelayed(),
+            'text-gray-400': !isDelayed(),
             'text-red-400': isDelayed()
           }
           ">calendar_today</mat-icon>
-      {{ task.endDate | date: "MMM dd, yyyy" }}
-    </span>
+      <span class="text-gray-400">
+        {{ task.endDate | date: "MMM dd, yyyy" }}
+      </span>
+    </p>
   </mat-expansion-panel>
 </div>

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Firestore, collection, collectionData, addDoc, doc, deleteDoc, setDoc } from '@angular/fire/firestore';
+import { Firestore, collection, collectionData, addDoc, doc, deleteDoc, setDoc, orderBy, query } from '@angular/fire/firestore';
 import { SelectTask, Task, TaskState } from '../models/task.model';
 import { BehaviorSubject, Subscription } from 'rxjs';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -61,7 +61,8 @@ export class TaskServiceService {
       this.taskListSubscription.unsubscribe();
     }
     const tasksCollection = collection(this.firestore, 'tasks');
-    collectionData(tasksCollection, { idField: 'id' }).subscribe((tasks) => {
+    const tasksQuery = query(tasksCollection, orderBy('title'));
+    collectionData(tasksQuery, { idField: 'id' }).subscribe((tasks) => {
       const mappedTasks = tasks.map<Task>((task) => {
         return {
           id: task['id'],
