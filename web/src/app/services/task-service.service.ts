@@ -84,7 +84,7 @@ export class TaskServiceService {
         description: task.description,
         state: task.state,
         startDate: task.startDate,
-        endDate: task,
+        endDate: task.endDate,
         updatedAt: new Date()
       });
       this.snackBar.open('Tache ajoutée avec succès', 'OK', { duration: 3000 });
