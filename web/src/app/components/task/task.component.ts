@@ -45,8 +45,6 @@ export class TaskComponent {
     this.isDropdownVisible = false;
   }
 
-  
-
   stateDisplayMap: { [key in TaskState]: string } = {
     [TaskState.DONE]: 'Terminée',
     [TaskState.TODO]: 'À faire',

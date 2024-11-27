@@ -12,6 +12,7 @@ import { TaskServiceService } from 'src/app/services/task-service.service';
 export class HomeComponent implements OnInit {
 
   tasks: Task[] = [];
+  noTaskMessage = 'Aucune tâche disponible pour le moment.';
 
   constructor(
     private readonly dialog: MatDialog,
