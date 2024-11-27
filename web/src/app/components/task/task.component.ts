@@ -45,24 +45,7 @@ export class TaskComponent {
     this.isDropdownVisible = false;
   }
 
-  getStatusClasses(): string {
-    console.log('this.task.state : ' + this.task.state + ' TaskState : ' + Object.values(TaskState));
-    switch (this.task.state) {
-      case TaskState.DONE || "DONE":
-        console.log('this.task.state : ' + this.task.state + ' TaskState : ' + TaskState.DONE);
-        return 'rounded-md mr-2 border px-2 py-1 cursor-pointer select-none border-green-300 bg-green-100 text-green-600';
-      case TaskState.DOING || "DOING":
-        console.log('this.task.state : ' + this.task.state + ' TaskState : ' + TaskState.DOING);
-        return 'rounded-md mr-2 border px-2 py-1 cursor-pointer select-none border-yellow-300 bg-yellow-100 text-yellow-600';
-      case TaskState.TODO || "TODO":
-        console.log('this.task.state : ' + this.task.state + ' TaskState : ' + TaskState.TODO);
-        return 'rounded-md mr-2 border px-2 py-1 cursor-pointer select-none border-blue-300 bg-blue-100 text-blue-600';
-      case TaskState.CANCELLED || "CANCELLED":
-        console.log('this.task.state : ' + this.task.state + ' TaskState : ' + TaskState.CANCELLED);
-        return 'rounded-md mr-2 border px-2 py-1 cursor-pointer select-none border-red-300 bg-red-100 text-red-600';
-    }
-
-  }
+  
 
   stateDisplayMap: { [key in TaskState]: string } = {
     [TaskState.DONE]: 'Terminée',
@@ -82,7 +65,7 @@ export class TaskComponent {
 
     return `${baseClasses} ${stateClasses[this.task.state] || ''}`;
   }
-  
+
   @HostListener('document:click', ['$event'])
   closeDropdownOnOutsideClick(event: MouseEvent) {
     const dropdown = document.getElementById('state-dropdown-' + this.task.id);
