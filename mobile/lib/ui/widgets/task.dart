@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:todoapp/models/task.dart';
+import 'package:todoapp/ui/screens/task/detail.dart';
 import 'package:todoapp/utilities/const/colors.dart';
 import 'package:todoapp/utilities/const/fonts.dart';
 import 'package:todoapp/utilities/const/style.dart';
@@ -27,7 +28,6 @@ class TaskCard extends StatefulWidget {
 class _TaskCardState extends State<TaskCard> with TickerProviderStateMixin {
   late AnimationController _controller;
   late Animation<double> _animation;
-
   @override
   Widget build(BuildContext context) {
     return ScaleTransition(
@@ -58,7 +58,7 @@ class _TaskCardState extends State<TaskCard> with TickerProviderStateMixin {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          widget.task.title,
+                          widget.task.title.capitalize(),
                           maxLines: 1,
                           style: const TextStyle(
                             color: UIColors.blackColor,
@@ -74,31 +74,83 @@ class _TaskCardState extends State<TaskCard> with TickerProviderStateMixin {
             ),
           ),
           Positioned(
-            bottom: 0,
-            left: 3,
-            child: Checkbox(
-              value: widget.isSelected,
-              onChanged: widget.onSelect,
-            ),
-          ),
+              bottom: 0,
+              left: 3,
+              child: Row(
+                children: [
+                  Checkbox(
+                    value: widget.isSelected,
+                    onChanged: widget.onSelect,
+                  ),
+                  GestureDetector(
+                    onTap: () {
+                      showTaskDetailsBottomSheet(context, widget.task);
+                    },
+                    child: const Icon(
+                      Icons.remove_red_eye_sharp,
+                      color: UIColors.grayText,
+                      size: 25,
+                    ),
+                  )
+                ],
+              )),
           Positioned(
-            bottom: 12,
-            right: 15,
-            child: Container(
-              padding: const EdgeInsets.all(2),
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(4),
-                color: statebgColors[widget.task.state],
-                border: Border.all(
-                  color: stateBorderColors[widget.task.state]!,
-                ),
-              ),
-              child: Text(stateLabels[widget.task.state]!,
-                  style: TextStyle(
-                      fontSize: FONT_SIZE_XS,
-                      color: stateTextColors[widget.task.state]!)),
-            ),
-          ),
+              bottom: 12,
+              right: 15,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Container(
+                    padding: const EdgeInsets.all(2),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(4),
+                      color: statebgColors[widget.task.state],
+                      border: Border.all(
+                        color: stateBorderColors[widget.task.state]!,
+                      ),
+                    ),
+                    child: Text(stateLabels[widget.task.state]!,
+                        style: TextStyle(
+                            fontSize: FONT_SIZE_XS,
+                            color: stateTextColors[widget.task.state]!)),
+                  ),
+                  const SizedBox(width: 5),
+                  Container(
+                    padding: const EdgeInsets.all(2),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(4),
+                      color: _endDatePassed()
+                          ? UIColors.cancelledBorderColor
+                          : UIColors.backgroundColor,
+                      border: Border.all(
+                        color: _endDatePassed()
+                            ? UIColors.cancelledBorderColor
+                            : UIColors.grayText,
+                      ),
+                    ),
+                    child: Row(
+                      children: [
+                        Icon(
+                          Icons.access_time_rounded,
+                          color: _endDatePassed()
+                              ? UIColors.cancelledTextColor
+                              : UIColors.grayText,
+                          size: 14,
+                        ),
+                        Text(
+                          ' ${'${widget.task.endDate.day}-${widget.task.endDate.month}-${widget.task.endDate.year}'}',
+                          style: TextStyle(
+                            color: _endDatePassed()
+                                ? UIColors.cancelledTextColor
+                                : UIColors.grayText,
+                            fontSize: FONT_SIZE_SM,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              )),
           Positioned(
             top: 0,
             right: 6,
@@ -132,5 +184,9 @@ class _TaskCardState extends State<TaskCard> with TickerProviderStateMixin {
     );
 
     _controller.forward();
+  }
+
+  bool _endDatePassed() {
+    return widget.task.endDate.isBefore(DateTime.now());
   }
 }
