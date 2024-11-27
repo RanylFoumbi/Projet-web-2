@@ -9,7 +9,7 @@ import { LanguageService } from 'src/app/services/language.service';
 export class SearchBarComponent {
   TaskState = TaskState;
   searchTerm = '';
-  currentState = 'TODO';
+  currentState = 'ALL';
   @Input() showDeleteIcon = false;
   @Output() search = new EventEmitter<string | undefined>();
   @Output() add = new EventEmitter<void>();
@@ -32,6 +32,10 @@ export class SearchBarComponent {
       [TaskState.DOING]: this.languageService.translate('task.state.DOING'),
       [TaskState.CANCELLED]: this.languageService.translate('task.state.CANCELLED'),
     };
+  }
+
+  get fieldTranslation(): string {
+    return this.languageService.translate('task.state.ALL');
   }
 
   submitSearch = () => {

@@ -1,4 +1,4 @@
-<div class="tasks-list">
+<div class="tasks-list overflow-y-auto mt-44">
     <ng-container *ngIf="tasks && tasks.length > 0; else noTasks">
       <app-task 
         *ngFor="let task of tasks" 

@@ -1,9 +1,6 @@
-<app-header></app-header>
-<app-search-bar 
-[showDeleteIcon]="delete"
-(add)="createTask()" 
-(search)="handleSearch($event)"
-(delete)="handleDelete()"
-(state)="handleChangeState($event)"
-></app-search-bar>
+<div class="fixed top-0 w-full bg-white z-10">
+    <app-header></app-header>
+    <app-search-bar [showDeleteIcon]="delete" (add)="createTask()" (search)="handleSearch($event)"
+        (delete)="handleDelete()" (state)="handleChangeState($event)"></app-search-bar>
+</div>
 <router-outlet></router-outlet>

@@ -13,6 +13,8 @@
         <span class="text-gray-400 overflow-hidden text-ellipsis">{{getStateDisplay()}}</span>
       </button>
       <mat-menu #menu="matMenu">
+        <button mat-menu-item (click)="switchSate('ALL')">
+          {{fieldTranslation}}</button>
         <div *ngFor="let state of TaskState | keyvalue" class="py-2">
           <button mat-menu-item (click)="switchSate(state.key)">
             {{stateDisplayMap[state.value]}}</button>

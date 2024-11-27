@@ -33,10 +33,14 @@ export class TaskServiceService {
   }
 
   filterByState(state: string) {
-    const filteredTasks = this.cachedTask.filter((task) => {
-      return task.state === state;
-    });
-    this.task.next(filteredTasks);
+    if (state === 'ALL') {
+      this.task.next(this.cachedTask);
+    } else {
+      const filteredTasks = this.cachedTask.filter((task) => {
+        return task.state === state;
+      });
+      this.task.next(filteredTasks);
+    }
   }
 
   searchTask(term: string | undefined) {
