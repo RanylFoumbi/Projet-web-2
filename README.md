@@ -23,6 +23,7 @@ Une application multi-plateforme pour la gestion des tâches, développée avec 
   - **CANCELLED** (Annulée)
 - Interface responsive pour le web.
 - Application mobile Flutter offrant une expérience utilisateur native.
+- Traduction dans plusieurs langues.
 
 ---
 
@@ -30,12 +31,12 @@ Une application multi-plateforme pour la gestion des tâches, développée avec 
 
 ```plaintext
 root/
-├── web/       # Version Angular
+├── web/                # Version Angular
 │   ├── src/
 │   │   ├── app/        # Composants Angular
 │   │   └── assets/     # Fichiers statiques
 │   └── package.json    # Dépendances Angular
-├── mobile/       # Version Flutter
+├── mobile/             # Version Flutter
 │   ├── lib/
 │   │   ├── screens/    # Écrans principaux
 │   │   ├── widgets/    # Widgets réutilisables
@@ -82,6 +83,14 @@ L'application s'exécutera sur un simulateur ou un appareil connecté.
 |---------------|---------------|
 | test@test.com   | testtest |
 
+## Aperçu de l'application
+| Créer une tâche | Menu home | Recherche | Détails de tâche |
+| --------------------------------------------------- | --------------------------------------------------- | --------------------------------------------------- | --------------------------------------------------- |
+| ![Créer une tâche](mobile/assets/Screenshot_1732700171.png) | ![Menu home](mobile/assets/Screenshot_1732799036.png) | ![Recherche](mobile/assets/Screenshot_1732799063.png) | ![Détails de tâche](mobile/assets/Screenshot_1732799100.png) |
+
+| Créer une tâche | Menu home | Supprimer des tâches |
+| --------------------------------------------------- | --------------------------------------------------- | --------------------------------------------------- |
+| ![Créer une tâche](web/src/assets/image-2.png) | ![Menu home](web/src/assets/image.png) | ![Supprimer des tâches](web/src/assets/image-1.png) |
 
 ## 🎨 Charte graphique
 
@@ -98,6 +107,9 @@ Voici les styles utilisés pour les statuts dans l'application Angular :
 **Angular**: Framework front-end pour le web.
 **Flutter**: SDK mobile pour créer des applications natives.
 **Firebase**: Backend pour la gestion des données.
+
+## 📱 Aperçu de l'application
+![Créer une tâche](mobile/assets/Screenshot_1732700171.png)
 
 ## 📜 Licence
 Ce projet est sous licence MIT.

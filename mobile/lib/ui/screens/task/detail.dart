@@ -13,7 +13,7 @@ Future<void> showTaskDetailsBottomSheet(
       isDismissible: true,
       isScrollControlled: true,
       backgroundColor: Colors.transparent,
-      builder: (BuildContext context) {
+      builder: (BuildContext context) { 
         return DraggableScrollableSheet(
           initialChildSize: 0.4,
           minChildSize: 0.4,
