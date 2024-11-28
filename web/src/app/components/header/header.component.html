@@ -1,5 +1,5 @@
 <mat-toolbar class="flex justify-between items-center relative" style="background-color: #89bbf9; color: white;">
-    <a routerLink="/home" mat-button class="text-3xl">TODO</a>
+    <a routerLink="/home" mat-button class="text-3xl">{{ languageService.translate('home.title') }}</a>
     <div class="flex items-center space-x-4">
       <div class="relative">
         <img 
@@ -10,7 +10,7 @@
   
         <div 
           *ngIf="isDropdownVisible" 
-          class="absolute right-0 mt-2 w-48 bg-white border rounded-md shadow-lg z-10" 
+          class="absolute right-0 mt-2 w-48 bg-white border rounded-md shadow-lg z-20" 
           style="color: rgb(45, 45, 45); font-size: small;">
           <div *ngFor="let lang of [
             { code: 'fr', name: 'Français', flag: 'france.png' },

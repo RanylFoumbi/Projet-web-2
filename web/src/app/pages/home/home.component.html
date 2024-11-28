@@ -1,4 +1,4 @@
-<div *ngIf="authService.user$ | async as user" class="fixed top-20 w-full bg-white z-20">
+<div *ngIf="authService.user$ | async as user" class="fixed top-16 w-full bg-white z-10">
     <app-search-bar [showDeleteIcon]="delete" (add)="createTask()" (search)="handleSearch($event)"
         (delete)="handleDelete()" (state)="handleChangeState($event)"></app-search-bar>
 </div>
