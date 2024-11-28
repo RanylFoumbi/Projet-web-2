@@ -12,7 +12,7 @@ export class TaskServiceService {
   task = new BehaviorSubject<Task[]>([])
   selectedTasks = new BehaviorSubject<Task[]>([])
   currentState = 'ALL';
-  cachedTask: Task[] = [];
+  cachedTask: Task[] = []; 
   taskListSubscription?: Subscription;
 
   constructor(
