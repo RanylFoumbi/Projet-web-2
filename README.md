@@ -24,12 +24,12 @@ Une application multi-plateforme pour la gestion des tâches, développée avec 
 
 ```plaintext
 root/
-├── web/       # Version Angular
+├── web/                # Version Angular
 │   ├── src/
 │   │   ├── app/        # Composants Angular
 │   │   └── assets/     # Fichiers statiques
 │   └── package.json    # Dépendances Angular
-├── mobile/       # Version Flutter
+├── mobile/             # Version Flutter
 │   ├── lib/
 │   │   ├── screens/    # Écrans principaux
 │   │   ├── widgets/    # Widgets réutilisables
