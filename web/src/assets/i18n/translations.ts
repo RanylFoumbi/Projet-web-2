@@ -6,6 +6,35 @@ export const translations: Translations = {
       title: 'TODO',
       noTasks: 'No tasks available.',
     },
+    auth: {
+      login: {
+        title: 'Login',
+        email: 'Email',
+        password: 'Password',
+        login: 'Login',
+        noAccount: 'Don\'t have an account?',
+        signUp: 'Sign up',
+        errorMessage: 'Incorrect email or password',
+      },
+      signup: {
+        title: 'Sign up',
+        email: 'Email',
+        password: 'Password',
+        signUp: 'Sign up',
+        alreadyAccount: 'Already have an account?',
+        login: 'Login',
+        errorMessage: 'An error occurred during registration',
+      },
+      logout: {
+        logout: 'Logout'
+      },
+      guard: {
+        logged: 'Logged in as',
+        notLogged1: 'It appears you are not logged in. Please',
+        notLogged2: 'Login',
+        notLogged3: 'to continue.',
+      }
+    },
     task: {
       state: {
         TODO: 'To do',
@@ -55,6 +84,35 @@ export const translations: Translations = {
     home: {
       title: 'À FAIRE',
       noTasks: 'Aucune tâche disponible pour le moment.',
+    },
+    auth: {
+      login: {
+        title: 'Se connecter',
+        email: 'Email',
+        password: 'Mot de passe',
+        login: 'Se connecter',
+        noAccount: 'Pas de compte ?',
+        signUp: 'S\'inscrire',
+        errorMessage: 'Email ou mot de passe incorrect',
+      },
+      signup: {
+        title: 'S\'inscrire',
+        email: 'Email',
+        password: 'Mot de passe',
+        signUp: 'S\'inscrire',
+        alreadyAccount: 'Vous avez déjà un compte ?',
+        login: 'Se connecter',
+        errorMessage: 'Une erreur est survenue lors de l\'inscription',
+      },
+      logout: {
+        logout: 'Se déconnecter'
+      },
+      guard: {
+        logged: 'Connecté en tant que',
+        notLogged1: 'Il semble que vous n\'êtes pas connecté. Veuillez vous',
+        notLogged2: 'connecter',
+        notLogged3: 'pour continuer.',
+      }
     },
     task: {
       state: {
@@ -106,6 +164,35 @@ export const translations: Translations = {
       title: 'POR HACER',
       noTasks: 'No hay tareas disponibles por el momento.',
     },
+    auth: {
+      login: {
+        title: 'Iniciar sesión',
+        email: 'Correo electrónico',
+        password: 'Contraseña',
+        login: 'Iniciar sesión',
+        noAccount: '¿No tienes cuenta?',
+        signUp: 'Registrarse',
+        errorMessage: 'Correo electrónico o contraseña incorrectos',
+      },
+      signup: {
+        title: 'Registrarse',
+        email: 'Correo electrónico',
+        password: 'Contraseña',
+        signUp: 'Registrarse',
+        alreadyAccount: '¿Ya tienes una cuenta?',
+        login: 'Iniciar sesión',
+        errorMessage: 'Ocurrió un error durante el registro',
+      },
+      logout: {
+        logout: 'Cerrar sesión'
+      },
+      guard: {
+        logged: 'Conectado como',
+        notLogged1: 'Parece que no has iniciado sesión. Por favor,',
+        notLogged2: 'inicia sesión',
+        notLogged3: 'para continuar.',
+      }
+    },
     task: {
       state: {
         TODO: 'Por hacer',
@@ -155,6 +242,35 @@ export const translations: Translations = {
     home: {
       title: 'TODO',
       noTasks: 'Keine Aufgaben verfügbar.',
+    },
+    auth: {
+      login: {
+        title: 'Einloggen',
+        email: 'E-Mail',
+        password: 'Passwort',
+        login: 'Einloggen',
+        noAccount: 'Kein Konto?',
+        signUp: 'Registrieren',
+        errorMessage: 'Falsche E-Mail oder Passwort',
+      },
+      signup: {
+        title: 'Registrieren',
+        email: 'E-Mail',
+        password: 'Passwort',
+        signUp: 'Registrieren',
+        alreadyAccount: 'Hast du schon ein Konto?',
+        login: 'Einloggen',
+        errorMessage: 'Ein Fehler ist bei der Registrierung aufgetreten',
+      },
+      logout: {
+        logout: 'Ausloggen'
+      },
+      guard: {
+        logged: 'Eingeloggt als',
+        notLogged1: 'Es scheint, dass du nicht eingeloggt bist. Bitte',
+        notLogged2: 'logge',
+        notLogged3: 'dich ein um fortzufahren.',
+      }
     },
     task: {
       state: {
@@ -206,6 +322,35 @@ export const translations: Translations = {
       title: 'TODO',
       noTasks: 'Nenhuma tarefa disponível.',
     },
+    auth: {
+      login: {
+        title: 'Entrar',
+        email: 'E-mail',
+        password: 'Senha',
+        login: 'Entrar',
+        noAccount: 'Não tem uma conta?',
+        signUp: 'Cadastrar-se',
+        errorMessage: 'E-mail ou senha incorretos',
+      },
+      signup: {
+        title: 'Cadastrar-se',
+        email: 'E-mail',
+        password: 'Senha',
+        signUp: 'Cadastrar-se',
+        alreadyAccount: 'Já tem uma conta?',
+        login: 'Entrar',
+        errorMessage: 'Ocorreu um erro durante o registro',
+      },
+      logout: {
+        logout: 'Sair'
+      },
+      guard: {
+        logged: 'Logado como',
+        notLogged1: 'Parece que você não está logado. Por favor, faça',
+        notLogged2: 'login',
+        notLogged3: 'para continuar.',
+      }
+    },    
     task: {
       state: {
         TODO: 'A fazer',
@@ -256,6 +401,35 @@ export const translations: Translations = {
       title: 'TODO',
       noTasks: 'Задачи отсутствуют.',
     },
+    auth: {
+      login: {
+        title: 'Войти',
+        email: 'Электронная почта',
+        password: 'Пароль',
+        login: 'Войти',
+        noAccount: 'Нет аккаунта?',
+        signUp: 'Зарегистрироваться',
+        errorMessage: 'Неверный email или пароль',
+      },
+      signup: {
+        title: 'Регистрация',
+        email: 'Электронная почта',
+        password: 'Пароль',
+        signUp: 'Зарегистрироваться',
+        alreadyAccount: 'Уже есть аккаунт?',
+        login: 'Войти',
+        errorMessage: 'Произошла ошибка при регистрации',
+      },
+      logout: {
+        logout: 'Выйти'
+      },
+      guard: {
+        logged: 'Вошли как',
+        notLogged1: 'Похоже, вы не вошли в систему. Пожалуйста,',
+        notLogged2: 'войдите',
+        notLogged3: 'чтобы продолжить.',
+      }
+    },    
     task: {
       state: {
         TODO: 'К выполнению',
@@ -306,6 +480,35 @@ export const translations: Translations = {
       title: 'TODO',
       noTasks: '現在利用可能なタスクはありません。',
     },
+    auth: {
+      login: {
+        title: 'ログイン',
+        email: 'メールアドレス',
+        password: 'パスワード',
+        login: 'ログイン',
+        noAccount: 'アカウントがありませんか？',
+        signUp: 'サインアップ',
+        errorMessage: 'メールアドレスまたはパスワードが正しくありません',
+      },
+      signup: {
+        title: 'サインアップ',
+        email: 'メールアドレス',
+        password: 'パスワード',
+        signUp: 'サインアップ',
+        alreadyAccount: 'すでにアカウントをお持ちですか？',
+        login: 'ログイン',
+        errorMessage: '登録中にエラーが発生しました',
+      },
+      logout: {
+        logout: 'ログアウト'
+      },
+      guard: {
+        logged: 'ログイン中：',
+        notLogged1: 'ログインしていないようです。以下の手順で',
+        notLogged2: 'ログインしてください',
+        notLogged3: '続行するために。',
+      }
+    },    
     task: {
       state: {
         TODO: 'やること',
@@ -356,6 +559,35 @@ export const translations: Translations = {
       title: 'TODO',
       noTasks: '작업이 없습니다.',
     },
+    auth: {
+      login: {
+        title: '로그인',
+        email: '이메일',
+        password: '비밀번호',
+        login: '로그인',
+        noAccount: '계정이 없으신가요?',
+        signUp: '회원가입',
+        errorMessage: '이메일 또는 비밀번호가 올바르지 않습니다',
+      },
+      signup: {
+        title: '회원가입',
+        email: '이메일',
+        password: '비밀번호',
+        signUp: '회원가입',
+        alreadyAccount: '이미 계정이 있으신가요?',
+        login: '로그인',
+        errorMessage: '회원가입 중 오류가 발생했습니다',
+      },
+      logout: {
+        logout: '로그아웃'
+      },
+      guard: {
+        logged: '로그인 중인 계정:',
+        notLogged1: '로그인하지 않으신 것 같습니다. 아래에서',
+        notLogged2: '로그인',
+        notLogged3: '하여 계속 진행해 주세요.',
+      }
+    },    
     task: {
       state: {
         TODO: '할 일',

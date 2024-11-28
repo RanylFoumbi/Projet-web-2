@@ -12,8 +12,9 @@ export class HeaderComponent implements OnInit {
   currentFlag = 'assets/language-flags/france.png'; 
   auth: Auth;
   user: User | null = null;
-  
-  constructor(private languageService: LanguageService, public authService: AuthService) {
+  loggedIn: string = '';
+
+  constructor(public languageService: LanguageService, public authService: AuthService) {
     this.auth = getAuth();
   }
 
@@ -25,6 +26,8 @@ export class HeaderComponent implements OnInit {
     this.auth.onAuthStateChanged((user) => {
       this.user = user;
     });
+    
+
   }
 
   toggleLanguageDropdown() {
@@ -36,6 +39,7 @@ export class HeaderComponent implements OnInit {
     this.languageService.setLanguage(language);
     this.updateFlag(language);
     this.isDropdownVisible = false; 
+    this.loggedIn = this.languageService.translate('auth.guard.logged');
   }
 
   private updateFlag(language: string) {

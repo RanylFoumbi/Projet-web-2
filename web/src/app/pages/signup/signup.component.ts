@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
 import { Router } from '@angular/router';
-import { initializeApp } from '@angular/fire/app';
-import { environment } from 'src/environments/env.dev';
+import { LanguageService } from 'src/app/services/language.service';
+
 
 
 @Component({
@@ -15,7 +15,9 @@ export class SignupComponent {
   password: string = '';
   errorMessage: string = '';
 
-  constructor(private router: Router) {}
+  constructor(private router: Router,
+    public readonly languageService: LanguageService,
+  ) {}
 
   signUp() {
     const auth = getAuth();

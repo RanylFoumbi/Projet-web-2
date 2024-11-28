@@ -4,6 +4,35 @@ export interface Translations {
         title: string;
         noTasks: string;
       };
+      auth: {
+        login: {
+          title: string;
+          email: string;
+          password: string;
+          login: string;
+          noAccount: string;
+          signUp: string;
+          errorMessage: string;
+        };
+        signup: {
+          title: string;
+          email: string;
+          password: string;
+          signUp: string;
+          alreadyAccount: string;
+          login: string;
+          errorMessage: string;
+        };
+        logout: {
+          logout: string;
+        };
+        guard: {
+          logged: string;
+          notLogged1: string;
+          notLogged2: string;
+          notLogged3: string;
+        };
+      };
       task: {
         state: {
           TODO: string;

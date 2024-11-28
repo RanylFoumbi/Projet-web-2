@@ -1,17 +1,20 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
+import { LanguageService } from 'src/app/services/language.service';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
 })
 export class LoginComponent {
-  email: string = ''; // Propriété email
-  password: string = ''; // Propriété password
-  errorMessage: string = ''; // Propriété errorMessage
+  email: string = ''; 
+  password: string = '';
+  errorMessage: string = '';
 
-  constructor(private router: Router) {}
+  constructor(private router: Router,
+    public readonly languageService: LanguageService,
+  ) {}
 
   login() {
     const auth = getAuth();

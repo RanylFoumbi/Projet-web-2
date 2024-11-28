@@ -1,4 +1,4 @@
-<div *ngIf="authService.user$ | async as user" class="fixed top-20 w-full bg-white z-10">
+<div *ngIf="authService.user$ | async as user" class="fixed top-20 w-full bg-white z-20">
     <app-search-bar [showDeleteIcon]="delete" (add)="createTask()" (search)="handleSearch($event)"
         (delete)="handleDelete()" (state)="handleChangeState($event)"></app-search-bar>
 </div>
@@ -26,7 +26,7 @@
 <ng-template #notLoggedIn>
   <div class="flex justify-center items-center p-8 text-center">
     <p class="text-gray-600 text-lg font-medium">
-      It appears you are not logged in. Please <a routerLink="/login" class="text-blue-500 hover:underline">Login</a> to continue.
+      {{ languageService.translate('auth.guard.notLogged1') }} <a routerLink="/login" class="text-blue-500 hover:underline">{{ languageService.translate('auth.guard.notLogged2') }}</a> {{ languageService.translate('auth.guard.notLogged3') }}
     </p>
   </div>
 </ng-template>

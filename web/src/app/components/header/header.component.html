@@ -36,18 +36,18 @@
         <mat-menu #userMenu="matMenu">
           <ng-container *ngIf="authService.user$ | async as user; else notLoggedIn">
             <button mat-menu-item disabled>
-              Logged in as: {{ user.email }}
+              {{ languageService.translate('auth.guard.logged') }}: {{ user.email }}
             </button>
             <button mat-menu-item (click)="authService.signOutUser()">
-              <mat-icon>logout</mat-icon> Logout
+              <mat-icon>logout</mat-icon> {{ languageService.translate('auth.logout.logout') }}
             </button>
           </ng-container>
           <ng-template #notLoggedIn>
             <button mat-menu-item routerLink="/login">
-              <mat-icon>login</mat-icon> Login
+              <mat-icon>login</mat-icon> {{ languageService.translate('auth.login.login') }}
             </button>
             <button mat-menu-item routerLink="/signup">
-                <mat-icon>login</mat-icon> Signup
+                <mat-icon>login</mat-icon> {{ languageService.translate('auth.signup.signUp') }}
               </button>
           </ng-template>
         </mat-menu>

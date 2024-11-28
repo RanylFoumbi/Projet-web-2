@@ -4,9 +4,9 @@ import { ConfirmDialogComponent } from 'src/app/components/confirm-dialog/confir
 import { MatDialog } from '@angular/material/dialog';
 import { EditTaskComponent } from 'src/app/components/edit-task/edit-task.component';
 import { TaskServiceService } from 'src/app/services/task-service.service';
-import { AuthService
+import { AuthService } from 'src/app/services/auth.service';
+import { LanguageService } from 'src/app/services/language.service';
 
- } from 'src/app/services/auth.service';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -22,6 +22,7 @@ export class HomeComponent implements OnInit {
     private readonly dialog: MatDialog,
     private readonly taskService: TaskServiceService,
     public readonly authService: AuthService,
+    public readonly languageService: LanguageService,
   ) { }
 
   ngOnInit(): void {
