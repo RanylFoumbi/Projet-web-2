@@ -4,6 +4,13 @@
 Une application multi-plateforme pour la gestion des tâches, développée avec **Angular** pour le front-end web et **Flutter** pour le mobile.
 
 ---
+## 👤 Collaborateurs
+
+| Collaborateurs|
+|---------------|
+| **Ranyl FOUMBI**   | 
+| **Rosvalde MANFO** |
+| **Félicité YAMBOS** |
 
 ## 🌟 Fonctionnalités
 
@@ -69,6 +76,11 @@ flutter run
 ```
 L'application s'exécutera sur un simulateur ou un appareil connecté.
 
+## 👤 Utilisateur de test
+
+| Email | Mot de passe |
+|---------------|---------------|
+| test@test.com   | testtest |
 
 
 ## 🎨 Charte graphique
