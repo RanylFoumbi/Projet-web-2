@@ -1,4 +1,9 @@
+<div *ngIf="authService.user$ | async as user" class="fixed top-20 w-full bg-white z-10">
+    <app-search-bar [showDeleteIcon]="delete" (add)="createTask()" (search)="handleSearch($event)"
+        (delete)="handleDelete()" (state)="handleChangeState($event)"></app-search-bar>
+</div>
 <div class="tasks-list overflow-y-auto mt-44">
+  <ng-container *ngIf="authService.user$ | async as user; else notLoggedIn">
     <ng-container *ngIf="tasks && tasks.length > 0; else noTasks">
       <app-task 
         *ngFor="let task of tasks" 
@@ -9,11 +14,19 @@
         (select)="handleSelectTask($event)">
       </app-task>
     </ng-container>
-  </div>
+  </ng-container>
+</div>
 <ng-template #noTasks>
     <div class="flex items-center justify-center pt-20">
         <p class="text-gray-500 text-3xl font-bold text-center">
           {{ noTaskMessage }}
         </p>
       </div>
+</ng-template>
+<ng-template #notLoggedIn>
+  <div class="flex justify-center items-center p-8 text-center">
+    <p class="text-gray-600 text-lg font-medium">
+      It appears you are not logged in. Please <a routerLink="/login" class="text-blue-500 hover:underline">Login</a> to continue.
+    </p>
+  </div>
 </ng-template>

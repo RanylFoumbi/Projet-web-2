@@ -4,6 +4,13 @@
 Une application multi-plateforme pour la gestion des tâches, développée avec **Angular** pour le front-end web et **Flutter** pour le mobile.
 
 ---
+## 👤 Collaborateurs
+
+| Collaborateurs|
+|---------------|
+| **Ranyl FOUMBI**   | 
+| **Rosvalde MANFO** |
+| **Félicité YAMBOS** |
 
 ## 🌟 Fonctionnalités
 
@@ -70,6 +77,12 @@ flutter run
 ```
 L'application s'exécutera sur un simulateur ou un appareil connecté.
 
+## 👤 Utilisateur de test
+
+| Email | Mot de passe |
+|---------------|---------------|
+| test@test.com   | testtest |
+
 ## Aperçu de l'application
 | Créer une tâche | Menu home | Recherche | Détails de tâche |
 | --------------------------------------------------- | --------------------------------------------------- | --------------------------------------------------- | --------------------------------------------------- |
@@ -78,6 +91,7 @@ L'application s'exécutera sur un simulateur ou un appareil connecté.
 | Créer une tâche | Menu home | Supprimer des tâches |
 | --------------------------------------------------- | --------------------------------------------------- | --------------------------------------------------- |
 | ![Créer une tâche](web/src/assets/image-2.png) | ![Menu home](web/src/assets/image.png) | ![Supprimer des tâches](web/src/assets/image-1.png) |
+
 ## 🎨 Charte graphique
 
 Voici les styles utilisés pour les statuts dans l'application Angular :

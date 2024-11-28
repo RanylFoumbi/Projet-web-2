@@ -37,6 +37,9 @@ import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dial
 import { provideFirebaseApp, initializeApp } from '@angular/fire/app';
 import { provideFirestore, getFirestore } from '@angular/fire/firestore';
 import { KeyToDescriptionPipe } from './pipes/key-to-description.pipe';
+import { LoginComponent } from './pages/login/login.component';
+import { SignupComponent } from './pages/signup/signup.component';
+import { provideAuth, getAuth } from '@angular/fire/auth';
 
 @NgModule({
   declarations: [
@@ -49,6 +52,8 @@ import { KeyToDescriptionPipe } from './pipes/key-to-description.pipe';
     EditTaskComponent,
     ConfirmDialogComponent,
     KeyToDescriptionPipe,
+    LoginComponent,
+    SignupComponent,
   ],
   imports: [
     BrowserModule,
@@ -75,6 +80,8 @@ import { KeyToDescriptionPipe } from './pipes/key-to-description.pipe';
     MatCheckboxModule,
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideFirestore(() => getFirestore()),
+    provideAuth(() => getAuth()),
+    
   ],
   providers: [
     {provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: {appearance: 'outline'}},
