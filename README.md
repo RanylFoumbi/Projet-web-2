@@ -75,6 +75,9 @@ L'application s'exécutera sur un simulateur ou un appareil connecté.
 | --------------------------------------------------- | --------------------------------------------------- | --------------------------------------------------- | --------------------------------------------------- |
 | ![Créer une tâche](mobile/assets/Screenshot_1732700171.png) | ![Menu home](mobile/assets/Screenshot_1732799036.png) | ![Recherche](mobile/assets/Screenshot_1732799063.png) | ![Détails de tâche](mobile/assets/Screenshot_1732799100.png) |
 
+| Créer une tâche | Menu home | Supprimer des tâches |
+| --------------------------------------------------- | --------------------------------------------------- | --------------------------------------------------- |
+| ![Créer une tâche](web/src/assets/image-2.png) | ![Menu home](web/src/assets/image.png) | ![Supprimer des tâches](web/src/assets/image-1.png) |
 ## 🎨 Charte graphique
 
 Voici les styles utilisés pour les statuts dans l'application Angular :
