@@ -1,88 +1,56 @@
 <mat-toolbar class="flex justify-between items-center relative" style="background-color: #89bbf9; color: white;">
     <a routerLink="/home" mat-button class="text-3xl">TODO</a>
-    
-    <div class="relative">
-      <img 
-        [src]="currentFlag" 
-        alt="Flag" 
-        class="w-8 h-8 cursor-pointer"
-        (click)="toggleLanguageDropdown()">
-      
-      <div 
-        *ngIf="isDropdownVisible" 
-        class="absolute right-0 mt-2 w-48 bg-white border rounded-md shadow-lg z-10" style="color: rgb(45, 45, 45); font-size: small;">
+    <div class="flex items-center space-x-4">
+      <div class="relative">
+        <img 
+          [src]="currentFlag" 
+          alt="Flag" 
+          class="w-8 h-8 cursor-pointer"
+          (click)="toggleLanguageDropdown()">
+  
         <div 
+          *ngIf="isDropdownVisible" 
+          class="absolute right-0 mt-2 w-48 bg-white border rounded-md shadow-lg z-10" 
+          style="color: rgb(45, 45, 45); font-size: small;">
+          <div *ngFor="let lang of [
+            { code: 'fr', name: 'Français', flag: 'france.png' },
+            { code: 'en', name: 'English', flag: 'etats-unis.png' },
+            { code: 'es', name: 'Español', flag: 'espagne.png' },
+            { code: 'pt', name: 'Português', flag: 'portugal.png' },
+            { code: 'de', name: 'Deutsch', flag: 'allemagne.png' },
+            { code: 'ru', name: 'Русский', flag: 'russie.png' },
+            { code: 'ja', name: '日本語', flag: 'japon.png' },
+            { code: 'kr', name: '한국어', flag: 'coree-du-sud.png' },
+          ]" 
           class="flex items-center px-4 py-2 cursor-pointer hover:bg-gray-200"
-          (click)="changeLanguage('fr')">
-          <img 
-            src="assets/language-flags/france.png" 
-            alt="French flag" 
-            class="w-6 h-6 mr-2">
-          Français
+          (click)="changeLanguage(lang.code)">
+            <img [src]="'assets/language-flags/' + lang.flag" alt="{{ lang.name }} flag" class="w-6 h-6 mr-2">
+            {{ lang.name }}
+          </div>
         </div>
-        <div 
-          class="flex items-center px-4 py-2 cursor-pointer hover:bg-gray-200"
-          (click)="changeLanguage('en')">
-          <img 
-            src="assets/language-flags/etats-unis.png" 
-            alt="US flag" 
-            class="w-6 h-6 mr-2">
-          English
-        </div>
-        <div 
-          class="flex items-center px-4 py-2 cursor-pointer hover:bg-gray-200"
-          (click)="changeLanguage('es')">
-          <img 
-            src="assets/language-flags/espagne.png" 
-            alt="Espagnol flag" 
-            class="w-6 h-6 mr-2">
-          Español
-        </div>
-        <div 
-          class="flex items-center px-4 py-2 cursor-pointer hover:bg-gray-200"
-          (click)="changeLanguage('de')">
-          <img 
-            src="assets/language-flags/allemagne.png" 
-            alt="German flag" 
-            class="w-6 h-6 mr-2">
-          Deutsch
-        </div>
-        <div 
-          class="flex items-center px-4 py-2 cursor-pointer hover:bg-gray-200"
-          (click)="changeLanguage('de')">
-          <img 
-            src="assets/language-flags/portugal.png" 
-            alt="Portugese flag" 
-            class="w-6 h-6 mr-2">
-            Português
-        </div>
-        <div 
-          class="flex items-center px-4 py-2 cursor-pointer hover:bg-gray-200"
-          (click)="changeLanguage('ru')">
-          <img 
-            src="assets/language-flags/russie.png" 
-            alt="Russian flag" 
-            class="w-6 h-6 mr-2">
-            Русский
-        </div>
-        <div 
-          class="flex items-center px-4 py-2 cursor-pointer hover:bg-gray-200"
-          (click)="changeLanguage('ja')">
-          <img 
-            src="assets/language-flags/japon.png" 
-            alt="Japanese flag" 
-            class="w-6 h-6 mr-2">
-            日本語
-        </div>
-        <div 
-          class="flex items-center px-4 py-2 cursor-pointer hover:bg-gray-200"
-          (click)="changeLanguage('kr')">
-          <img 
-            src="assets/language-flags/coree-du-sud.png" 
-            alt="Korean flag" 
-            class="w-6 h-6 mr-2">
-            한국어
-        </div>
+      </div>
+      <div>
+        <button mat-icon-button [matMenuTriggerFor]="userMenu">
+          <mat-icon>person</mat-icon>
+        </button>
+        <mat-menu #userMenu="matMenu">
+          <ng-container *ngIf="user; else notLoggedIn">
+            <button mat-menu-item disabled>
+              Logged in as: {{ user.email }}
+            </button>
+            <button mat-menu-item (click)="signOutUser()">
+              <mat-icon>logout</mat-icon> Logout
+            </button>
+          </ng-container>
+          <ng-template #notLoggedIn>
+            <button mat-menu-item routerLink="/login">
+              <mat-icon>login</mat-icon> Login
+            </button>
+            <button mat-menu-item routerLink="/signup">
+                <mat-icon>login</mat-icon> Signup
+              </button>
+          </ng-template>
+        </mat-menu>
       </div>
     </div>
   </mat-toolbar>

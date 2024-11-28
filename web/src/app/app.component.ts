@@ -9,48 +9,8 @@ import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dial
   selector: 'app-root',
   templateUrl: './app.component.html',
 })
-export class AppComponent implements OnInit {
+export class AppComponent {
 
-  title = 'Todo web';
-  delete = false;
 
-  constructor(
-    private readonly dialog: MatDialog,
-    private readonly taskService: TaskServiceService
-  ) { }
-
-  ngOnInit(): void {
-    this.taskService.selectedTasks.subscribe((tasks) => {
-      this.delete = tasks.length > 0;
-    });
-  }
-
-  createTask = () => {
-    const dialog = this.dialog.open(EditTaskComponent, {
-      width: '500px',
-    });
-    dialog.afterClosed().subscribe((result: Task) => {
-      if (result) {
-        this.taskService.addTask(result);
-      }
-    });
-  }
-
-  handleSearch(term: string | undefined) {
-    this.taskService.searchTask(term);
-  }
-
-  handleChangeState(state: string) {
-    this.taskService.filterByState(state);
-  }
-
-  handleDelete() {
-    const dialogRef = this.dialog.open(ConfirmDialogComponent);
-
-    dialogRef.afterClosed().subscribe(result => {
-      if (result === 'confirm') {
-        this.taskService.deleteAll();      }
-    });
-  }
 }
 

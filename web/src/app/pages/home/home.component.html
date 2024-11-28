@@ -1,3 +1,8 @@
+<div class="fixed top-0 w-full bg-white z-10">
+    <app-header></app-header>
+    <app-search-bar [showDeleteIcon]="delete" (add)="createTask()" (search)="handleSearch($event)"
+        (delete)="handleDelete()" (state)="handleChangeState($event)"></app-search-bar>
+</div>
 <div class="tasks-list overflow-y-auto mt-44">
     <ng-container *ngIf="tasks && tasks.length > 0; else noTasks">
       <app-task 

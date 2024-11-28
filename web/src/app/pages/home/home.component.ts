@@ -22,6 +22,10 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
     this.taskService.task.subscribe((tasks) => {
       this.tasks = tasks;
+      
+    });
+    this.taskService.selectedTasks.subscribe((tasks) => {
+      this.delete = tasks.length > 0;
     });
   }
 
@@ -56,5 +60,37 @@ export class HomeComponent implements OnInit {
 
   handleUpdateTaskState(task: Task) {
     this.taskService.addTask(task);
+  }
+
+  title = 'Todo web';
+  delete = false;
+
+
+  createTask = () => {
+    const dialog = this.dialog.open(EditTaskComponent, {
+      width: '500px',
+    });
+    dialog.afterClosed().subscribe((result: Task) => {
+      if (result) {
+        this.taskService.addTask(result);
+      }
+    });
+  }
+
+  handleSearch(term: string | undefined) {
+    this.taskService.searchTask(term);
+  }
+
+  handleChangeState(state: string) {
+    this.taskService.filterByState(state);
+  }
+
+  handleDelete() {
+    const dialogRef = this.dialog.open(ConfirmDialogComponent);
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result === 'confirm') {
+        this.taskService.deleteAll();      }
+    });
   }
 }
