@@ -1,12 +1,16 @@
 import { Component } from '@angular/core';
 import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
 import { Router } from '@angular/router';
+import { initializeApp } from '@angular/fire/app';
+import { environment } from 'src/environments/env.dev';
+
 
 @Component({
   selector: 'app-sign-up',
   templateUrl: './signup.component.html',
 })
 export class SignupComponent {
+
   email: string = '';
   password: string = '';
   errorMessage: string = '';
@@ -17,10 +21,12 @@ export class SignupComponent {
     const auth = getAuth();
     createUserWithEmailAndPassword(auth, this.email, this.password)
       .then(() => {
-        this.router.navigate(['/home']); // Redirige après inscription
+        this.router.navigate(['/home']); 
       })
       .catch((error) => {
-        this.errorMessage = error.message; // Affiche une erreur si échec
+        console.error('Error during sign up:', error);
+        this.errorMessage = error.message;
       });
   }
+  
 }

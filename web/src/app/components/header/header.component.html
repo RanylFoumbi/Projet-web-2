@@ -34,11 +34,11 @@
           <mat-icon>person</mat-icon>
         </button>
         <mat-menu #userMenu="matMenu">
-          <ng-container *ngIf="user; else notLoggedIn">
+          <ng-container *ngIf="authService.user$ | async as user; else notLoggedIn">
             <button mat-menu-item disabled>
               Logged in as: {{ user.email }}
             </button>
-            <button mat-menu-item (click)="signOutUser()">
+            <button mat-menu-item (click)="authService.signOutUser()">
               <mat-icon>logout</mat-icon> Logout
             </button>
           </ng-container>

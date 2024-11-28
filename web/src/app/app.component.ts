@@ -1,16 +1,15 @@
-import { Component, OnInit } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
-import { EditTaskComponent } from './components/edit-task/edit-task.component';
-import { TaskServiceService } from './services/task-service.service';
-import { Task } from './models/task.model';
-import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dialog.component';
+import { Component } from '@angular/core';
+import { TaskServiceService } from 'src/app/services/task-service.service';
+
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
 })
-export class AppComponent {
+export class AppComponent  {
 
+  constructor(
+    private readonly taskService: TaskServiceService
+  ) { }
 
 }
-

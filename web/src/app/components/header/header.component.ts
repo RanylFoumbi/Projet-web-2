@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { LanguageService } from 'src/app/services/language.service';
 import { Auth, getAuth, signOut, User } from 'firebase/auth';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-header',
@@ -12,7 +13,7 @@ export class HeaderComponent implements OnInit {
   auth: Auth;
   user: User | null = null;
   
-  constructor(private languageService: LanguageService) {
+  constructor(private languageService: LanguageService, public authService: AuthService) {
     this.auth = getAuth();
   }
 
@@ -51,11 +52,5 @@ export class HeaderComponent implements OnInit {
     this.currentFlag = flags[language] || 'assets/language-flags/france.png';
   }
 
-  signOutUser() {
-    signOut(this.auth).then(() => {
-      console.log('User signed out');
-    }).catch((error) => {
-      console.error('Sign-out error:', error);
-    });
-  }
+  
 }

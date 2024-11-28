@@ -4,7 +4,9 @@ import { ConfirmDialogComponent } from 'src/app/components/confirm-dialog/confir
 import { MatDialog } from '@angular/material/dialog';
 import { EditTaskComponent } from 'src/app/components/edit-task/edit-task.component';
 import { TaskServiceService } from 'src/app/services/task-service.service';
+import { AuthService
 
+ } from 'src/app/services/auth.service';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -13,10 +15,13 @@ export class HomeComponent implements OnInit {
 
   tasks: Task[] = [];
   noTaskMessage = 'Aucune tâche disponible pour le moment.';
+  title = 'Todo web';
+  delete = false;
 
   constructor(
     private readonly dialog: MatDialog,
-    private readonly taskService: TaskServiceService
+    private readonly taskService: TaskServiceService,
+    public readonly authService: AuthService,
   ) { }
 
   ngOnInit(): void {
@@ -61,10 +66,6 @@ export class HomeComponent implements OnInit {
   handleUpdateTaskState(task: Task) {
     this.taskService.addTask(task);
   }
-
-  title = 'Todo web';
-  delete = false;
-
 
   createTask = () => {
     const dialog = this.dialog.open(EditTaskComponent, {
