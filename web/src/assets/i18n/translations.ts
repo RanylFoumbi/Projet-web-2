@@ -82,7 +82,7 @@ export const translations: Translations = {
   },
   fr: {
     home: {
-      title: 'À FAIRE',
+      title: 'TODO',
       noTasks: 'Aucune tâche disponible pour le moment.',
     },
     auth: {
@@ -161,7 +161,7 @@ export const translations: Translations = {
   },
   es: {
     home: {
-      title: 'POR HACER',
+      title: 'TODO',
       noTasks: 'No hay tareas disponibles por el momento.',
     },
     auth: {
@@ -477,7 +477,7 @@ export const translations: Translations = {
   },    
   ja: {
     home: {
-      title: 'TODO',
+      title: 'やること',
       noTasks: '現在利用可能なタスクはありません。',
     },
     auth: {
@@ -556,7 +556,7 @@ export const translations: Translations = {
   },
   kr: {
     home: {
-      title: 'TODO',
+      title: '할일',
       noTasks: '작업이 없습니다.',
     },
     auth: {
