@@ -3,7 +3,7 @@
   <div class="flex items-center space-x-4">
     <div>
       <button mat-icon-button [matMenuTriggerFor]="languageMenu">
-        <img [src]="currentFlag" alt="Flag" class="w-8 h-8">
+        <img [src]="currentFlag" alt="Flag">
       </button>
       <mat-menu #languageMenu="matMenu">
         <button
@@ -19,14 +19,14 @@
             { code: 'kr', name: '한국어', flag: 'coree-du-sud.png' },
           ]"
           (click)="changeLanguage(lang.code)"
-          class="flex items-center w-full space-x-3"
+          class="flex items-center w-full gap-2"
         >
           <img
             [src]="'assets/language-flags/' + lang.flag"
             alt="{{ lang.name }} flag"
-            class="w-6 h-6 flex-shrink-0"
+            class="w-6 h-6 inline mr-3"
           />
-          <span class="text-sm font-medium flex-grow">{{ lang.name }}</span>
+          <span class="text-sm font-medium">{{ lang.name }}</span>
         </button>
       </mat-menu>
       
