@@ -1,18 +1,14 @@
 <mat-toolbar class="flex justify-between items-center relative" style="background-color: #89bbf9; color: white;">
-    <a routerLink="/home" mat-button class="text-3xl">{{ languageService.translate('home.title') }}</a>
-    <div class="flex items-center space-x-4">
-      <div class="relative">
-        <img 
-          [src]="currentFlag" 
-          alt="Flag" 
-          class="w-8 h-8 cursor-pointer"
-          (click)="toggleLanguageDropdown()">
-  
-        <div 
-          *ngIf="isDropdownVisible" 
-          class="absolute right-0 mt-2 w-48 bg-white border rounded-md shadow-lg z-20" 
-          style="color: rgb(45, 45, 45); font-size: small;">
-          <div *ngFor="let lang of [
+  <a routerLink="/home" mat-button class="text-3xl">{{ languageService.translate('home.title') }}</a>
+  <div class="flex items-center space-x-4">
+    <div>
+      <button mat-icon-button [matMenuTriggerFor]="languageMenu">
+        <img [src]="currentFlag" alt="Flag" class="w-8 h-8">
+      </button>
+      <mat-menu #languageMenu="matMenu">
+        <button
+          mat-menu-item
+          *ngFor="let lang of [
             { code: 'fr', name: 'Français', flag: 'france.png' },
             { code: 'en', name: 'English', flag: 'etats-unis.png' },
             { code: 'es', name: 'Español', flag: 'espagne.png' },
@@ -21,37 +17,43 @@
             { code: 'ru', name: 'Русский', flag: 'russie.png' },
             { code: 'ja', name: '日本語', flag: 'japon.png' },
             { code: 'kr', name: '한국어', flag: 'coree-du-sud.png' },
-          ]" 
-          class="flex items-center px-4 py-2 cursor-pointer hover:bg-gray-200"
-          (click)="changeLanguage(lang.code)">
-            <img [src]="'assets/language-flags/' + lang.flag" alt="{{ lang.name }} flag" class="w-6 h-6 mr-2">
-            {{ lang.name }}
-          </div>
-        </div>
-      </div>
-      <div>
-        <button mat-icon-button [matMenuTriggerFor]="userMenu">
-          <mat-icon>person</mat-icon>
+          ]"
+          (click)="changeLanguage(lang.code)"
+          class="flex items-center w-full space-x-3"
+        >
+          <img
+            [src]="'assets/language-flags/' + lang.flag"
+            alt="{{ lang.name }} flag"
+            class="w-6 h-6 flex-shrink-0"
+          />
+          <span class="text-sm font-medium flex-grow">{{ lang.name }}</span>
         </button>
-        <mat-menu #userMenu="matMenu">
-          <ng-container *ngIf="authService.user$ | async as user; else notLoggedIn">
-            <button mat-menu-item disabled>
-              {{ languageService.translate('auth.guard.logged') }}: {{ user.email }}
-            </button>
-            <button mat-menu-item (click)="authService.signOutUser()">
-              <mat-icon>logout</mat-icon> {{ languageService.translate('auth.logout.logout') }}
-            </button>
-          </ng-container>
-          <ng-template #notLoggedIn>
-            <button mat-menu-item routerLink="/login">
-              <mat-icon>login</mat-icon> {{ languageService.translate('auth.login.login') }}
-            </button>
-            <button mat-menu-item routerLink="/signup">
-                <mat-icon>login</mat-icon> {{ languageService.translate('auth.signup.signUp') }}
-              </button>
-          </ng-template>
-        </mat-menu>
-      </div>
+      </mat-menu>
+      
+      
     </div>
-  </mat-toolbar>
-  
+    <div>
+      <button mat-icon-button [matMenuTriggerFor]="userMenu">
+        <mat-icon>person</mat-icon>
+      </button>
+      <mat-menu #userMenu="matMenu">
+        <ng-container *ngIf="authService.user$ | async as user; else notLoggedIn">
+          <button mat-menu-item disabled>
+            {{ languageService.translate('auth.guard.logged') }}: {{ user.email }}
+          </button>
+          <button mat-menu-item (click)="authService.signOutUser()">
+            <mat-icon>logout</mat-icon> {{ languageService.translate('auth.logout.logout') }}
+          </button>
+        </ng-container>
+        <ng-template #notLoggedIn>
+          <button mat-menu-item routerLink="/login">
+            <mat-icon>login</mat-icon> {{ languageService.translate('auth.login.login') }}
+          </button>
+          <button mat-menu-item routerLink="/signup">
+            <mat-icon>login</mat-icon> {{ languageService.translate('auth.signup.signUp') }}
+          </button>
+        </ng-template>
+      </mat-menu>
+    </div>
+  </div>
+</mat-toolbar>
